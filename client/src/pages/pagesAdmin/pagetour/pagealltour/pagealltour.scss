@@ -1,0 +1,19 @@
+.alltourpage{
+    width: 100%;
+    height: auto;
+    .table-all-tour{
+        padding:150px 0 0 100px ;
+        Table{
+            tbody{
+                .td-action{
+                    display: flex;
+                    align-items: center;
+                    Button{
+                        width: 60px;
+                        height: 30px;
+                    }
+                }
+            }
+        }
+    }
+}

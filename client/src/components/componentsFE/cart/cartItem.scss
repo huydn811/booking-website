@@ -1,0 +1,14 @@
+.img_item_in_cart {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    img{
+        width: 100%;
+    }
+}
+.center-on-small-only{
+    .btn-group{
+        padding-left: 30px;
+    }
+}

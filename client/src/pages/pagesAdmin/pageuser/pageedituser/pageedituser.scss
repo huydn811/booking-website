@@ -1,0 +1,26 @@
+.pageedituser{
+    width: 100%;
+    height: auto;
+    .form{
+        width: 100%;
+        height: auto;
+        legend{
+            padding-top: 200px;
+            padding-left: 200px;
+        }
+        .form_{
+            padding: 50px 200px;
+            input{
+                display: flex;
+            }
+            .img_{
+                width: 90px;
+                height: 50px;
+                padding-top: 10px;
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

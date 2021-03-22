@@ -1,0 +1,134 @@
+@import "../../../assets/scss/variable";
+header{
+   .header{
+       width: 100%;
+       height: auto;
+       position: relative;
+       .bg-header{
+           width: 100%;
+           height: auto;
+           .slide-bg-header{
+               img{
+                width: 100%;
+               }
+           }
+       }
+       .menu-header{
+           width: 100%;
+           height: auto;
+           padding-top: 50px;
+           position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 9;
+           .logo{
+               width: 100%;
+               height: auto;
+               .img-logo-header{
+                   width: 200px;
+                   height: 70px;
+                   img {
+                       width: 100%;
+                   }
+               }
+           }
+           .menu{
+               width: 100%;
+               height: 100%;
+               display: flex;
+                align-items: center;
+                justify-content: center;
+               .list-menu{
+                   width: 100%;
+                   height: auto;
+                   ul {
+                       width: 100%;
+                       height: auto;
+                       display: flex;
+                       list-style: none;
+                       li {
+                           width: auto;
+                           height: 40px;
+                           display: flex;
+                           justify-content: center;
+                           align-items: center;
+                           transform: transtion .6s;
+                            .navLink{
+                                padding: 30px;
+                                text-decoration: none;
+                                font-family: $font_family;
+                                font-style: normal;
+                                font-weight: normal;
+                                font-size: 20px;
+                                line-height: 24px;
+                                color: #000000;
+                                img{
+                                    width: 40px;
+                                }
+                            }
+                            &:hover{
+                                color: #000000;
+                                background-color: #FFC600;
+                                border-radius: 5px;
+                                transition: background .6s;
+                            }
+                       }
+                   }
+               }
+           }
+       }
+       .search-tour{
+           width: 100%;
+           height: auto;
+           position: absolute;
+           bottom: 50px;
+           left: 0;
+           z-index: 9;
+           .bg-search-tour{
+               width: 100%;
+               height: 100px;
+               background-color: #FFFFFF;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               border-radius: 5px;
+               .input-search-tour{
+                   width: 100%;
+                   height: auto;
+                   display: flex;
+                   justify-content: center;
+                    .input-search{
+                        width: 800px;
+                        height: auto;
+                    }
+                    .button-find{
+                        width: 100px;
+                        height: 37px;
+                        padding-left: 10px;
+                        button{
+                            width: 100%;
+                            height: 100%;
+                            background-color: #FFC600;
+                            border-radius: 5px;
+                            border: none;
+                            &:focus{
+                                outline: none;
+                            }
+                            &:hover{
+                                color: #FFFFFF;
+                            }
+                            span{
+                                font-family: $font_family;
+                                font-style: normal;
+                                font-weight: normal;
+                                font-size: 20px;
+                                line-height: 24px;
+                                color: #FFFFFF;
+                            }
+                        }
+                    }
+               }
+           }
+       }
+   }
+}
