@@ -1,11 +1,9 @@
-"use strict";
-
 // initialize map
-var map = new GMaps({
+const map = new GMaps({
   div: '#map',
   lat: -6.5637928,
   lng: 106.7535061,
-  zoom: 13
+  zoom: 13,
 });
 
 // draw route between 'origin' to 'destination'
@@ -15,5 +13,5 @@ map.drawRoute({
   travelMode: 'driving',
   strokeColor: '#131540',
   strokeOpacity: 0.6,
-  strokeWeight: 6
+  strokeWeight: 6,
 });

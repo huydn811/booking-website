@@ -1,8 +1,6 @@
-"use strict";
-
-var sparkline_values = [10, 7, 4, 8, 5, 8, 6, 5, 2, 4, 7, 4, 9, 6, 5, 9];
-var sparkline_values_chart = [2, 6, 4, 8, 3, 5, 2, 7];
-var sparkline_values_bar = [10, 7, 4, 8, 5, 8, 6, 5, 2, 4, 7, 4, 9, 10, 7, 4, 8, 5, 8, 6, 5, 2, 4, 7, 4, 9, 8, 6, 5, 2, 4, 7, 4, 9, 10, 2, 4, 7, 4, 9, 7, 4, 8, 5, 8, 6, 5];
+const sparkline_values = [10, 7, 4, 8, 5, 8, 6, 5, 2, 4, 7, 4, 9, 6, 5, 9];
+const sparkline_values_chart = [2, 6, 4, 8, 3, 5, 2, 7];
+const sparkline_values_bar = [10, 7, 4, 8, 5, 8, 6, 5, 2, 4, 7, 4, 9, 10, 7, 4, 8, 5, 8, 6, 5, 2, 4, 7, 4, 9, 8, 6, 5, 2, 4, 7, 4, 9, 10, 2, 4, 7, 4, 9, 7, 4, 8, 5, 8, 6, 5];
 
 $('.sparkline-inline').sparkline(sparkline_values, {
   type: 'line',
@@ -40,19 +38,18 @@ $('.sparkline-line-chart').sparkline(sparkline_values_chart, {
   spotRadius: 2,
 });
 
-$(".sparkline-bar").sparkline(sparkline_values_bar, {
+$('.sparkline-bar').sparkline(sparkline_values_bar, {
   type: 'bar',
   height: '32',
   disableTooltips: true,
-  barColor: 'rgb(87,75,144)'
+  barColor: 'rgb(87,75,144)',
 });
 
-
-var ctx = document.getElementById("myChart").getContext('2d');
+var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     datasets: [{
       label: 'Statistics',
       data: [460, 458, 330, 502, 430, 610, 488],
@@ -64,22 +61,22 @@ var myChart = new Chart(ctx, {
       pointRadius: 3.5,
       pointBackgroundColor: 'transparent',
       pointHoverBackgroundColor: 'rgba(63,82,227,.8)',
-    },{
+    }, {
       label: 'Statistics',
       data: [390, 600, 390, 280, 600, 430, 638],
       borderWidth: 2,
       backgroundColor: 'rgba(254,86,83,.7)',
       borderWidth: 0,
       borderColor: 'transparent',
-      pointBorderWidth: 0 ,
+      pointBorderWidth: 0,
       pointRadius: 3.5,
       pointBackgroundColor: 'transparent',
       pointHoverBackgroundColor: 'rgba(254,86,83,.8)',
-    }]
+    }],
   },
   options: {
     legend: {
-      display: false
+      display: false,
     },
     scales: {
       yAxes: [{
@@ -90,26 +87,26 @@ var myChart = new Chart(ctx, {
         ticks: {
           beginAtZero: true,
           stepSize: 200,
-          callback: function(value, index, values) {
-            return '$' + value;
-          }
-        }
+          callback(value, index, values) {
+            return `$${value}`;
+          },
+        },
       }],
       xAxes: [{
         gridLines: {
           display: false,
           tickMarkLength: 15,
-        }
-      }]
+        },
+      }],
     },
-  }
+  },
 });
 
-var ctx = document.getElementById("myChart2").getContext('2d');
+var ctx = document.getElementById('myChart2').getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     datasets: [{
       label: 'Statistics',
       data: [460, 458, 330, 502, 430, 610, 488],
@@ -118,8 +115,8 @@ var myChart = new Chart(ctx, {
       borderColor: 'rgba(254,86,83,.7)',
       borderWidth: 2.5,
       pointBackgroundColor: '#ffffff',
-      pointRadius: 4
-    },{
+      pointRadius: 4,
+    }, {
       label: 'Statistics',
       data: [550, 558, 390, 562, 490, 670, 538],
       borderWidth: 2,
@@ -127,12 +124,12 @@ var myChart = new Chart(ctx, {
       borderColor: 'transparent',
       borderWidth: 0,
       pointBackgroundColor: '#999',
-      pointRadius: 4
-    }]
+      pointRadius: 4,
+    }],
   },
   options: {
     legend: {
-      display: false
+      display: false,
     },
     scales: {
       yAxes: [{
@@ -142,23 +139,23 @@ var myChart = new Chart(ctx, {
         },
         ticks: {
           beginAtZero: true,
-          stepSize: 150
-        }
+          stepSize: 150,
+        },
       }],
       xAxes: [{
         gridLines: {
-          display: false
-        }
-      }]
+          display: false,
+        },
+      }],
     },
-  }
+  },
 });
 
-var ctx = document.getElementById("myChart3").getContext('2d');
+var ctx = document.getElementById('myChart3').getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     datasets: [{
       label: 'Google',
       data: [290, 358, 220, 402, 690, 510, 688],
@@ -168,7 +165,7 @@ var myChart = new Chart(ctx, {
       borderWidth: 2.5,
       pointBackgroundColor: 'transparent',
       pointBorderColor: 'transparent',
-      pointRadius: 4
+      pointRadius: 4,
     },
     {
       label: 'Facebook',
@@ -179,13 +176,13 @@ var myChart = new Chart(ctx, {
       borderWidth: 0,
       pointBackgroundColor: 'transparent',
       pointBorderColor: 'transparent',
-      pointRadius: 4
+      pointRadius: 4,
     },
-    ]
+    ],
   },
   options: {
     legend: {
-      display: false
+      display: false,
     },
     scales: {
       yAxes: [{
@@ -195,45 +192,46 @@ var myChart = new Chart(ctx, {
         },
         ticks: {
           beginAtZero: true,
-          stepSize: 200
-        }
+          stepSize: 200,
+        },
       }],
       xAxes: [{
         gridLines: {
-          display: false
-        }
-      }]
+          display: false,
+        },
+      }],
     },
-  }
+  },
 });
 
 $('#visitorMap').vectorMap(
-{
-  map: 'world_en',
-  backgroundColor: '#ffffff',
-  borderColor: '#f2f2f2',
-  borderOpacity: .8,
-  borderWidth: 1,
-  hoverColor: '#000',
-  hoverOpacity: .8,
-  color: '#ddd',
-  normalizeFunction: 'linear',
-  selectedRegions: false,
-  showTooltip: true,
-  pins: {
-    id: '<div className="jqvmap-circle"></div>',
-    my: '<div className="jqvmap-circle"></div>',
-    th: '<div className="jqvmap-circle"></div>',
-    sy: '<div className="jqvmap-circle"></div>',
-    eg: '<div className="jqvmap-circle"></div>',
-    ae: '<div className="jqvmap-circle"></div>',
-    nz: '<div className="jqvmap-circle"></div>',
-    tl: '<div className="jqvmap-circle"></div>',
-    ng: '<div className="jqvmap-circle"></div>',
-    si: '<div className="jqvmap-circle"></div>',
-    pa: '<div className="jqvmap-circle"></div>',
-    au: '<div className="jqvmap-circle"></div>',
-    ca: '<div className="jqvmap-circle"></div>',
-    tr: '<div className="jqvmap-circle"></div>',
+  {
+    map: 'world_en',
+    backgroundColor: '#ffffff',
+    borderColor: '#f2f2f2',
+    borderOpacity: 0.8,
+    borderWidth: 1,
+    hoverColor: '#000',
+    hoverOpacity: 0.8,
+    color: '#ddd',
+    normalizeFunction: 'linear',
+    selectedRegions: false,
+    showTooltip: true,
+    pins: {
+      id: '<div className="jqvmap-circle"></div>',
+      my: '<div className="jqvmap-circle"></div>',
+      th: '<div className="jqvmap-circle"></div>',
+      sy: '<div className="jqvmap-circle"></div>',
+      eg: '<div className="jqvmap-circle"></div>',
+      ae: '<div className="jqvmap-circle"></div>',
+      nz: '<div className="jqvmap-circle"></div>',
+      tl: '<div className="jqvmap-circle"></div>',
+      ng: '<div className="jqvmap-circle"></div>',
+      si: '<div className="jqvmap-circle"></div>',
+      pa: '<div className="jqvmap-circle"></div>',
+      au: '<div className="jqvmap-circle"></div>',
+      ca: '<div className="jqvmap-circle"></div>',
+      tr: '<div className="jqvmap-circle"></div>',
+    },
   },
-});
+);

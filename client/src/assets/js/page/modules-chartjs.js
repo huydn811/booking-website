@@ -1,10 +1,8 @@
-"use strict";
-
-var ctx = document.getElementById("myChart").getContext('2d');
+var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     datasets: [{
       label: 'Statistics',
       data: [460, 458, 330, 502, 430, 610, 488],
@@ -13,12 +11,12 @@ var myChart = new Chart(ctx, {
       borderColor: '#6777ef',
       borderWidth: 2.5,
       pointBackgroundColor: '#ffffff',
-      pointRadius: 4
-    }]
+      pointRadius: 4,
+    }],
   },
   options: {
     legend: {
-      display: false
+      display: false,
     },
     scales: {
       yAxes: [{
@@ -28,26 +26,26 @@ var myChart = new Chart(ctx, {
         },
         ticks: {
           beginAtZero: true,
-          stepSize: 150
-        }
+          stepSize: 150,
+        },
       }],
       xAxes: [{
         ticks: {
-          display: false
+          display: false,
         },
         gridLines: {
-          display: false
-        }
-      }]
+          display: false,
+        },
+      }],
     },
-  }
+  },
 });
 
-var ctx = document.getElementById("myChart2").getContext('2d');
+var ctx = document.getElementById('myChart2').getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
     datasets: [{
       label: 'Statistics',
       data: [460, 458, 330, 502, 430, 610, 488],
@@ -56,12 +54,12 @@ var myChart = new Chart(ctx, {
       borderColor: '#6777ef',
       borderWidth: 2.5,
       pointBackgroundColor: '#ffffff',
-      pointRadius: 4
-    }]
+      pointRadius: 4,
+    }],
   },
   options: {
     legend: {
-      display: false
+      display: false,
     },
     scales: {
       yAxes: [{
@@ -71,22 +69,22 @@ var myChart = new Chart(ctx, {
         },
         ticks: {
           beginAtZero: true,
-          stepSize: 150
-        }
+          stepSize: 150,
+        },
       }],
       xAxes: [{
         ticks: {
-          display: false
+          display: false,
         },
         gridLines: {
-          display: false
-        }
-      }]
+          display: false,
+        },
+      }],
     },
-  }
+  },
 });
 
-var ctx = document.getElementById("myChart3").getContext('2d');
+var ctx = document.getElementById('myChart3').getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
@@ -105,14 +103,14 @@ var myChart = new Chart(ctx, {
         '#fc544b',
         '#6777ef',
       ],
-      label: 'Dataset 1'
+      label: 'Dataset 1',
     }],
     labels: [
       'Black',
       'Green',
       'Yellow',
       'Red',
-      'Blue'
+      'Blue',
     ],
   },
   options: {
@@ -120,10 +118,10 @@ var myChart = new Chart(ctx, {
     legend: {
       position: 'bottom',
     },
-  }
+  },
 });
 
-var ctx = document.getElementById("myChart4").getContext('2d');
+var ctx = document.getElementById('myChart4').getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'pie',
   data: {
@@ -142,14 +140,14 @@ var myChart = new Chart(ctx, {
         '#fc544b',
         '#6777ef',
       ],
-      label: 'Dataset 1'
+      label: 'Dataset 1',
     }],
     labels: [
       'Black',
       'Green',
       'Yellow',
       'Red',
-      'Blue'
+      'Blue',
     ],
   },
   options: {
@@ -157,5 +155,5 @@ var myChart = new Chart(ctx, {
     legend: {
       position: 'bottom',
     },
-  }
+  },
 });

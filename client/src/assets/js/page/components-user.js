@@ -1,6 +1,4 @@
-"use strict";
-
-$("#users-carousel").owlCarousel({
+$('#users-carousel').owlCarousel({
   items: 4,
   margin: 20,
   autoplay: true,
@@ -8,13 +6,13 @@ $("#users-carousel").owlCarousel({
   loop: true,
   responsive: {
     0: {
-      items: 2
+      items: 2,
     },
     578: {
-      items: 4
+      items: 4,
     },
     768: {
-      items: 4
-    }
-  }
+      items: 4,
+    },
+  },
 });

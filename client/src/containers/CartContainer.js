@@ -1,114 +1,98 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 // import PropTypes from 'prop-types';
 
 // import * as Message from '../constants/Message';
 import CartItem from '../components/componentsFE/cart/CartItem';
-import Cart from './../components/componentsFE/cart/Cart';
+import Cart from '../components/componentsFE/cart/Cart';
 import CartResult from '../components/componentsFE/cart/CartResult';
-import Popup from "../components/Popup/Popup";
-import {actDeleteTourInCart,actUpdateTourInCart} from '../actions/actCart';
+import Popup from '../components/Popup/Popup';
+import { actDeleteTourInCart, actUpdateTourInCart } from '../actions/actCart';
 
 class CartContainer extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            isOpenPopup : false,
-        }
-    }
+  constructor (props) {
+    super(props);
+    this.state = {
+      isOpenPopup: false,
+    };
+  }
 
-    // truyen prop func cho cart result
-    handleOnclickAccept = () => {
-        let isOpenPopup = this.state.isOpenPopup;
-        this.setState({
-            isOpenPopup : !isOpenPopup
-        })
-        if(isOpenPopup === true){
-            console.log("aaaaaaaaa", '["aaaaaaaaa"]');
-        }else {
-            return;
-        }
-    }
+  handleOnclickAccept = () => {
+    const { isOpenPopup } = this.state;
+    this.setState({
+      isOpenPopup: !isOpenPopup,
+    });
+  }
 
-    showPopup = () => {
-        return(this.state.isOpenPopup === true) ? (
-            <Popup/>
-        ) : ""
-    }
+  showPopup = () => {
+    const { isOpenPopup } = this.state;
+    if (isOpenPopup) return <Popup />;
+    return null;
+  }
 
-    render(){
-        var { cart } = this.props;
-        return(
-            <>
-                <Cart>
-                    {this.showCartItem(cart)}
-                    {this.showTotalAmount(cart)}
-                </Cart>
-                <div className = "popup-accept">
-                    {this.showPopup()}
-                </div>
-            </>
-        )
-    }
-    showCartItem = (cart) => {
-        var { 
-            onDeleteProductInCart, 
-            // onChangeMessage, 
-            onUpdateProductInCart 
-        } = this.props;
-        // var result = <tr>
-        //                 <td>
-        //                     {Message.MSG_CART_EMPTY}
-        //                 </td>
-        //             </tr>;
-        if(cart.length >0 ){
-            var result = cart.map((item,index) => {
-                return (
-                    <CartItem 
-                        key={index}
-                        item={item}            //item la sp va soluong mua  
-                        index={index}
-                        onDeleteProductInCart = {onDeleteProductInCart}
-                        // onChangeMessage = { onChangeMessage }
-                        onUpdateProductInCart = { onUpdateProductInCart }
-                    />
-                );
-            })
-        }
-        return result;
-    }
+  showCartItem = (cart) => {
+    const {
+      onDeleteProductInCart,
+      // onChangeMessage,
+      onUpdateProductInCart,
+    } = this.props;
 
-    showTotalAmount = (cart) => {
-        var result = null;
-        if(cart.length > 0){
-            result = <CartResult 
-                        handleOnclickAccept = {this.handleOnclickAccept} 
-                        cart={cart}
-                    />
-        }
-        return result;
+    if (cart.length > 0) {
+      const result = cart.map((item, index) => (
+        <CartItem
+          key={index}
+          item={item} // item la sp va soluong mua
+          index={index}
+          onDeleteProductInCart={onDeleteProductInCart}
+          // onChangeMessage = { onChangeMessage }
+          onUpdateProductInCart={onUpdateProductInCart}
+        />
+      ));
+      return result;
     }
+  }
+
+  showTotalAmount = (cart) => {
+    let result = null;
+    if (cart.length > 0) {
+      result = (
+        <CartResult
+          handleOnclickAccept={this.handleOnclickAccept}
+          cart={cart}
+        />
+      );
+    }
+    return result;
+  }
+
+  render() {
+    const { cart } = this.props;
+    return (
+      <>
+        <Cart>
+          {this.showCartItem(cart)}
+          {this.showTotalAmount(cart)}
+        </Cart>
+        <div className="popup-accept">
+          {this.showPopup()}
+        </div>
+      </>
+    );
+  }
 }
 
+const mapStateToProps = (state) => ({
+  cart: state.cart, // props la cart => cac sp trong gio hang
+});
 
-const mapStateToProps = (state) => {
-    return {
-        cart : state.cart                      //props la cart => cac sp trong gio hang
-    }
-};
+const mapDispatchToProps = (dispatch) => ({
+  onDeleteProductInCart: (product) => {
+    dispatch(actDeleteTourInCart(product));
+  },
 
-const mapDispatchToProps = (dispatch, props) => {
-    return {
-        onDeleteProductInCart : (product) => {                    //props tham so la product
-            dispatch(actDeleteTourInCart(product))
-        },
-        // onChangeMessage : (message) => {
-        //     dispatch(actChangeMessage(message))
-        // },
-        onUpdateProductInCart : (product, quantity) => {
-            dispatch(actUpdateTourInCart(product, quantity))
-        }
-    }
-};
+  onUpdateProductInCart: (product, quantity) => {
+    dispatch(actUpdateTourInCart(product, quantity));
+  },
+});
 
-export default connect(mapStateToProps,mapDispatchToProps)(CartContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CartContainer);

@@ -1,10 +1,8 @@
-"use strict";
-
-var ctx = document.getElementById("myChart").getContext('2d');
+const ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June", "July", "August"],
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August'],
     datasets: [{
       label: 'Sales',
       data: [3200, 1800, 4305, 3022, 6310, 5120, 5880, 6154],
@@ -24,15 +22,15 @@ var myChart = new Chart(ctx, {
       backgroundColor: 'rgba(254,86,83,.7)',
       borderWidth: 0,
       borderColor: 'transparent',
-      pointBorderWidth: 0 ,
+      pointBorderWidth: 0,
       pointRadius: 3.5,
       pointBackgroundColor: 'transparent',
       pointHoverBackgroundColor: 'rgba(254,86,83,.8)',
-    }]
+    }],
   },
   options: {
     legend: {
-      display: false
+      display: false,
     },
     scales: {
       yAxes: [{
@@ -44,24 +42,24 @@ var myChart = new Chart(ctx, {
         ticks: {
           beginAtZero: true,
           stepSize: 1500,
-          callback: function(value, index, values) {
-            return '$' + value;
-          }
-        }
+          callback(value, index, values) {
+            return `$${value}`;
+          },
+        },
       }],
       xAxes: [{
         gridLines: {
           display: false,
           tickMarkLength: 15,
-        }
-      }]
+        },
+      }],
     },
-  }
+  },
 });
 
-var balance_chart = document.getElementById("balance-chart").getContext('2d');
+const balance_chart = document.getElementById('balance-chart').getContext('2d');
 
-var balance_chart_bg_color = balance_chart.createLinearGradient(0, 0, 0, 70);
+const balance_chart_bg_color = balance_chart.createLinearGradient(0, 0, 0, 70);
 balance_chart_bg_color.addColorStop(0, 'rgba(63,82,227,.2)');
 balance_chart_bg_color.addColorStop(1, 'rgba(63,82,227,0)');
 
@@ -80,17 +78,17 @@ var myChart = new Chart(balance_chart, {
       pointRadius: 3,
       pointBackgroundColor: 'transparent',
       pointHoverBackgroundColor: 'rgba(63,82,227,1)',
-    }]
+    }],
   },
   options: {
     layout: {
       padding: {
         bottom: -1,
-        left: -1
-      }
+        left: -1,
+      },
     },
     legend: {
-      display: false
+      display: false,
     },
     scales: {
       yAxes: [{
@@ -100,8 +98,8 @@ var myChart = new Chart(balance_chart, {
         },
         ticks: {
           beginAtZero: true,
-          display: false
-        }
+          display: false,
+        },
       }],
       xAxes: [{
         gridLines: {
@@ -109,16 +107,16 @@ var myChart = new Chart(balance_chart, {
           display: false,
         },
         ticks: {
-          display: false
-        }
-      }]
+          display: false,
+        },
+      }],
     },
-  }
+  },
 });
 
-var sales_chart = document.getElementById("sales-chart").getContext('2d');
+const sales_chart = document.getElementById('sales-chart').getContext('2d');
 
-var sales_chart_bg_color = sales_chart.createLinearGradient(0, 0, 0, 80);
+const sales_chart_bg_color = sales_chart.createLinearGradient(0, 0, 0, 80);
 balance_chart_bg_color.addColorStop(0, 'rgba(63,82,227,.2)');
 balance_chart_bg_color.addColorStop(1, 'rgba(63,82,227,0)');
 
@@ -138,17 +136,17 @@ var myChart = new Chart(sales_chart, {
       pointRadius: 3,
       pointBackgroundColor: 'transparent',
       pointHoverBackgroundColor: 'rgba(63,82,227,1)',
-    }]
+    }],
   },
   options: {
     layout: {
       padding: {
         bottom: -1,
-        left: -1
-      }
+        left: -1,
+      },
     },
     legend: {
-      display: false
+      display: false,
     },
     scales: {
       yAxes: [{
@@ -158,8 +156,8 @@ var myChart = new Chart(sales_chart, {
         },
         ticks: {
           beginAtZero: true,
-          display: false
-        }
+          display: false,
+        },
       }],
       xAxes: [{
         gridLines: {
@@ -167,14 +165,14 @@ var myChart = new Chart(sales_chart, {
           display: false,
         },
         ticks: {
-          display: false
-        }
-      }]
+          display: false,
+        },
+      }],
     },
-  }
+  },
 });
 
-$("#products-carousel").owlCarousel({
+$('#products-carousel').owlCarousel({
   items: 3,
   margin: 10,
   autoplay: true,
@@ -182,13 +180,13 @@ $("#products-carousel").owlCarousel({
   loop: true,
   responsive: {
     0: {
-      items: 2
+      items: 2,
     },
     768: {
-      items: 2
+      items: 2,
     },
     1200: {
-      items: 3
-    }
-  }
+      items: 3,
+    },
+  },
 });
