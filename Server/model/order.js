@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 var orderSchema = mongoose.Schema({
-    orderID : {
-        type : String,
-        trim  : true,
-    },
+    // orderID : {
+    //     type : String,
+    //     trim  : true,
+    // },
     tourID : {
         type : String,
         trim : true,
@@ -13,7 +13,7 @@ var orderSchema = mongoose.Schema({
         type : String,
         trim : true,
     },
-    qtyPeopleOrder : {
+    qtyPeopleJoin : {
         type : Number,
         trim : true,
     },
@@ -33,16 +33,16 @@ var orderSchema = mongoose.Schema({
         type : Number,
         trim : true,
     },
-    orderDetail : [{
-        qtyPeopleJoin : {
-            type : Number,
-            trim : true,
-        },
-        nameCustomerJoin : {
-            type : String,
-            trim : true,
-        } 
-    }]
+    // orderDetail : [{
+    //     qtyPeopleJoin : {
+    //         type : Number,
+    //         trim : true,
+    //     },
+    //     nameCustomerJoin : {
+    //         type : String,
+    //         trim : true,
+    //     } 
+    // }]
 });
 
 var Order = mongoose.model("Order", orderSchema, "orders");

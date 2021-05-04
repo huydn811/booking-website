@@ -1,29 +1,22 @@
 const mongoose = require("mongoose");
 
 var CartSchema = new mongoose.Schema({
-    ip : {
-        type : String,
-    },
+    // ip : {
+    //     type : String,
+    // },
     userID : {
         type : String,
         ref : "User"
     },
-    cartDetail : [{
-        tourID : {
-            type : String,
-            ref : "Tours"
-        },
-        QtyPeople : {
-            type : Number,
-            trim : true,
-            default : 1
-        },
-        QtyPrice : {
-            type : Number,
-            trim : true,
-            default : 0
-        }
-    }],
+    customerID : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "Customer"
+    },
+    tourInCart : [],
+    dateCreateCart : {
+        type : Date,
+        default : Date.now
+    },
 });
 
 var CartSchema = mongoose.model("Cart", CartSchema , "cart");

@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 var customerSchema = new mongoose.Schema({
-    customerID : {
-        type : String,
-        trim : true,
-    },
+    // customerID : {
+    //     type : String,
+    //     trim : true,
+    // },
     nameCustomer : {
         type : String,
         trim : true,
@@ -13,7 +13,7 @@ var customerSchema = new mongoose.Schema({
         type : String,
         trim : true,
     },
-    CMND : {
+    identityCard : {
         type : Number,
         trim : true,
     },

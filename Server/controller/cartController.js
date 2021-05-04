@@ -11,17 +11,27 @@ module.exports.getCart = (req,res) => {
     })
 }
 
-module.exports.addToCart = (req, res) => {
-    let cart = new Cart({
-        userID : req.body.user_id,
-        tourID : req.body.tour_id,
-    });
-    cart.save()
-    .then((cart)=>{
-        res.status(200)
-       res.json(cart)
-    })
-    .catch((err) => {
-        res.status(400).send(err)
-    })
+module.exports.addToCart = async (req, res) => {
+    let cart = new Cart(req.body);
+    let userID = req.body.userID;
+    let checkCartExiste = await Cart.findOne({userID});
+    console.log(checkCartExiste, '[checkCartExiste]');
+    if(checkCartExiste) {
+        await Cart.findOneAndUpdate({userID}),{
+            $push : {
+                tourInCart : cart.tourInCart
+            }
+        }
+        res.json(cart).status(200);
+    }else {
+        cart.save()
+        .then((cart)=>{
+            res.status(200)
+           res.json(cart)
+        })
+        .catch((err) => {
+            res.status(400).send(err)
+        })
+    }
 }
+

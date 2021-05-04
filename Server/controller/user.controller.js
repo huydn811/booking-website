@@ -13,7 +13,6 @@ module.exports.getAllUser = (req,res) => {
 
 module.exports.addUser = async (req,res) => {
     let user = new User(req.body);
-    console.log(user, '[user]');
     let imgBase = req.body.imgBase;
     const saveImg = await helper.SaveImgBase64(imgBase,"/users");
     user.avatarUser = saveImg.fileName;

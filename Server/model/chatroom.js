@@ -3,17 +3,19 @@ var mongoose = require("mongoose");
 var ChatRoomSchema = mongoose.Schema({
     type : {}, //group || 1 - 1
     messageID : {
-        type : String,
-        ref : "Message"
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "Message",
+        trim : true
     },
     userID : {
-        type : String,
-        ref : "User"
+        type : mongoose.Schema.Types.ObjectId,
+        ref : "User",
+        trim : true
     },
     roomMaster : {
         type : String
     }
 })
 
-var chatRoom = mongoose.model("ChatRoom", ChatRoomSchema, "chatrooms");
-module.exports = chatRoom;
+var ChatRoom = mongoose.model("ChatRoom", ChatRoomSchema, "chatrooms");
+module.exports = ChatRoom;
