@@ -7,6 +7,7 @@ import login from "./login";
 import cart from "./cart";
 import search from "./search";
 import chatRoom from './chat';
+import customer from './customer';
 const appReducers = combineReducers ({
   tour,
   employee,
@@ -15,7 +16,8 @@ const appReducers = combineReducers ({
   login,
   cart,
   search,
-  chatRoom
+  chatRoom,
+  customer
 });
 
 export default appReducers;

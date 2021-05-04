@@ -107,7 +107,6 @@ class PageAddTour extends Component {
             descriptionTour,
             detailTour
         } = this.state;
-        console.log(this.state, '[this.state]');
         return(
             <div className="pageaddtour">
                 <div className="form">

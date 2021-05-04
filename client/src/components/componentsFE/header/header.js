@@ -72,9 +72,8 @@ class Header extends Component {
   }
   
   handleLogout = () => {
-    // localStorage.removeItem("persist:login");
-    console.log(this.props.history, '[this.props.history]');
-    console.log(this.props, '[this.props]');
+    localStorage.clear();
+    window.location.reload();
   }
   
   render(){

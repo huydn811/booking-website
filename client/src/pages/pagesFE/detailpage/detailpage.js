@@ -104,7 +104,6 @@ class DetailPage extends Component {
 
     render(){
         var { detailTour } = this.props;
-        console.log(this.props, '[this.props]');
         return(
             <div className="detail-page">
                 <Container> 
@@ -123,6 +122,7 @@ class DetailPage extends Component {
 }
 
 const mapStateToProps = (state) => { //get all data from store
+    console.log(state, '[state]');
     return {
         login : state.login,
         detailTour : state.itemEditing,

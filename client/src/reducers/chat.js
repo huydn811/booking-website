@@ -16,6 +16,9 @@ const chatRoom = (state = initialState, action) =>{
         case TypeChat.FETCH_ALL_CHATROOM:
             state.push(action.chatRooms);
             return [...state]
+        case TypeChat.ADD_MESSAGES:
+            state.push(action.message)
+            return[...state]
         default:
             return [...state]
     }

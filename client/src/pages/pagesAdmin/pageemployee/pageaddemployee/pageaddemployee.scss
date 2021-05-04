@@ -10,13 +10,16 @@
         }
         .form_{
             padding: 50px 200px;
-            .img_tour{
+            .img_{
                 width: 90px;
                 height: 50px;
                 padding-top: 10px;
                 img {
                     width: 100%;
                 }
+            }
+            .text-muted {
+                color: red !important;
             }
         }
     }

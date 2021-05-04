@@ -39,28 +39,28 @@
           body = body.removeAttr('id').clone().removeClass('modal-part');
           part.remove();
         }else{
-          body = '<div class="text-danger">Modal part element not found!</div>';
+          body = '<div className="text-danger">Modal part element not found!</div>';
         }
       }
 
       // Modal base template
-      var modal_template = '   <div class="modal'+ (options.animation == true ? ' fade' : '') +'" tabIndex="-1" role="dialog" id="'+ id +'">  '  +
-                 '     <div class="modal-dialog '+options.size+(options.center ? ' modal-dialog-centered' : '')+'" role="document">  '  +
-                 '       <div class="modal-content">  '  +
+      var modal_template = '   <div className="modal'+ (options.animation == true ? ' fade' : '') +'" tabIndex="-1" role="dialog" id="'+ id +'">  '  +
+                 '     <div className="modal-dialog '+options.size+(options.center ? ' modal-dialog-centered' : '')+'" role="document">  '  +
+                 '       <div className="modal-content">  '  +
                  ((options.header == true) ?
-                 '         <div class="modal-header">  '  +
-                 '           <h5 class="modal-title">'+ options.title +'</h5>  '  +
+                 '         <div className="modal-header">  '  +
+                 '           <h5 className="modal-title">'+ options.title +'</h5>  '  +
                  ((options.closeButton == true) ?
-                 '           <button type="button" class="close" data-dismiss="modal" aria-label="Close">  '  +
+                 '           <button type="button" className="close" data-dismiss="modal" aria-label="Close">  '  +
                  '             <span aria-hidden="true">&times;</span>  '  +
                  '           </button>  '
                  : '') +
                  '         </div>  '
                  : '') +
-                 '         <div class="modal-body">  '  +
+                 '         <div className="modal-body">  '  +
                  '         </div>  '  +
                  (options.buttons.length > 0 ?
-                 '         <div class="modal-footer">  '  +
+                 '         <div className="modal-footer">  '  +
                  '         </div>  '
                  : '')+
                  '       </div>  '  +
@@ -77,7 +77,7 @@
         let id = "id" in item ? item.id : '';
 
         // Button template
-        this_button = '<button type="'+ ("submit" in item && item.submit == true ? 'submit' : 'button') +'" class="'+ item.class +'" id="'+ id +'">'+ item.text +'</button>';
+        this_button = '<button type="'+ ("submit" in item && item.submit == true ? 'submit' : 'button') +'" className="'+ item.class +'" id="'+ id +'">'+ item.text +'</button>';
 
         // add click event to the button
         this_button = $(this_button).off('click').on("click", function() {
@@ -136,7 +136,7 @@
         };
 
         // if form is not contains button element
-        if(!modal_form.find('button').length) $(modal_form).append('<button class="d-none" id="'+ id +'-submit"></button>');
+        if(!modal_form.find('button').length) $(modal_form).append('<button className="d-none" id="'+ id +'-submit"></button>');
 
         // add click event
         form_submit_btn.click(function() {
@@ -191,7 +191,7 @@
     }
 
     if(options.dismiss == true) {
-      var btn_dismiss = '<a class="btn btn-danger card-progress-dismiss">'+options.dismissText+'</a>';
+      var btn_dismiss = '<a className="btn btn-danger card-progress-dismiss">'+options.dismissText+'</a>';
       btn_dismiss = $(btn_dismiss).off('click').on('click', function() {
         me.removeClass('card-progress');
         me.find('.card-progress-dismiss').remove();
@@ -227,17 +227,17 @@
     }, chat);
 
     var target = $(element),
-        element = '<div class="chat-item '+chat.position+'" style="display:none">' +
+        element = '<div className="chat-item '+chat.position+'" style="display:none">' +
                   '<img src="'+chat.picture+'">' +
-                  '<div class="chat-details">' +
-                  '<div class="chat-text">'+chat.text+'</div>' +
-                  '<div class="chat-time">'+chat.time+'</div>' +
+                  '<div className="chat-details">' +
+                  '<div className="chat-text">'+chat.text+'</div>' +
+                  '<div className="chat-time">'+chat.time+'</div>' +
                   '</div>' +
                   '</div>',
-        typing_element = '<div class="chat-item chat-left chat-typing" style="display:none">' +
+        typing_element = '<div className="chat-item chat-left chat-typing" style="display:none">' +
                   '<img src="'+chat.picture+'">' +
-                  '<div class="chat-details">' +
-                  '<div class="chat-text"></div>' +
+                  '<div className="chat-details">' +
+                  '<div className="chat-text"></div>' +
                   '</div>' +
                   '</div>';
 

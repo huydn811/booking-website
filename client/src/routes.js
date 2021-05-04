@@ -21,7 +21,7 @@ import AddEmployeePage from "./pages/pagesAdmin/pageemployee/pageaddemployee/pag
 import EditEmployeePage from "./pages/pagesAdmin/pageemployee/pageeditemployee/pageeditemployee";
 //admin page transport
 // admin page chat
-import ChatPgae from "./pages/pagesAdmin/pageChat/chat";
+import ChatPage from "./pages/pagesAdmin/pageChat/chat";
 // import AllTransport from "./pages/pagesAdmin/page"
 // import RootAdmin from "./pages/pagesAdmin/rootAdmin";
 //page login
@@ -155,10 +155,15 @@ export const routesAdmin = [
     ),
   },
   //page chat
+  // {
+  //   path: "/admint/chat",
+  //   exact: false,
+  //   main: ({ match, history }) => <ChatPage match={match} history={history} />,
+  // },
   {
     path: "/admint/chat/:chatRoomID",
     exact: false,
-    main: ({ match, history }) => <ChatPgae match={match} history={history} />,
+    main: ({ match, history }) => <ChatPage match={match} history={history} />,
   },
   //page not found
   {

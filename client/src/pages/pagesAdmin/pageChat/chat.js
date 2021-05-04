@@ -32,17 +32,16 @@ class PageChat extends Component {
 
     //connect with server nodejs, through socket.io
     componentWillMount(){
-        const socket = io("http://localhost:9000");
-        // console.log(socket, '[this.socket]');
+        const socket = io("http://localhost:9000",{
+                withCredentials: true,
+        });
         
-        // // client take data from server
-        // socket.on("newMessage-server-sent",(data) => {
-        //     console.log(data, '[data]');
-        // })
-        
-        // //client send data to server
-        // socket.emit("newMessage-client-sent","hello")
+        // client take data from server
+        socket.on("newMessage-server-sent",(data) => {
+        })
 
+        //client send data to server
+        // socket.emit("newMessage-client-sent","hello")
         this.props.fetchAllChatRoom();
     }
     

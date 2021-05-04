@@ -172,7 +172,7 @@ $(function() {
 
         if(me.find('> .dropdown-menu').length) {
           me.find('> .dropdown-menu').hide();
-          me.find('> .dropdown-menu').prepend('<li class="dropdown-title pt-3">'+ me.find('> a').text() +'</li>');
+          me.find('> .dropdown-menu').prepend('<li className="dropdown-title pt-3">'+ me.find('> a').text() +'</li>');
         }else{
           me.find('> a').attr('data-toggle', 'tooltip');
           me.find('> a').attr('data-original-title', me.find('> a').text());
@@ -442,11 +442,11 @@ $(function() {
       $(target).collapse('toggle');
       $(target).on('shown.bs.collapse', function(e) {
         e.stopPropagation();
-        me.html('<i class="fas fa-minus"></i>');
+        me.html('<i className="fas fa-minus"></i>');
       });
       $(target).on('hidden.bs.collapse', function(e) {
         e.stopPropagation();
-        me.html('<i class="fas fa-plus"></i>');
+        me.html('<i className="fas fa-plus"></i>');
       });
       return false;
     });

@@ -115,17 +115,17 @@ class HomePage extends Component {
                                 <div className="time-price-our-tour">
                                     <Row>
                                         <Col lg={7}>
-                                            <div className="time-tour">
-                                            <NavLink className="navLink-time-tour"  to={`/detail-tour/${tour._id}`}>
+                                            <div className="qty-people">
+                                                <span>{`Remain : ${tour.qtyPeople}`}</span>
+                                            {/* <NavLink className="navLink-time-tour"  to={`/detail-tour/${tour._id}`}>
                                                 <fieldset>EXPLORE</fieldset>
                                             </NavLink>
                                                 <div className="icon-time">
                                                     {/* <img src="../../../img/icon-time.svg"/> */}
-                                                    <i class="fas fa-arrow-right"></i>
-                                                </div>   
+                                                    {/* <i className="fas fa-arrow-right"></i>
+                                                </div>    */}
                                                 {/* <fieldset>5 Days / 4 Nights</fieldset> */}
                                                 {/* <fieldset>Sale</fieldset> */}
-                                                
                                             </div>
                                         </Col>
                                         <Col lg={5}>

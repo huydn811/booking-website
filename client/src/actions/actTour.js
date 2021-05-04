@@ -5,6 +5,7 @@ export const actFetchToursReq = () => {
     return (dispatch) => {
         return callApi("tour/get-all-tour","GET", null)
         .then(res=>{
+            console.log(res.data, '[res.data]');
             dispatch(actFetchTours(res.data))
         })
     };

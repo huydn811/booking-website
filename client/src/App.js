@@ -24,11 +24,9 @@ class App extends Component {
   }
 
   showContentMenu = (routes) => {
-    console.log(routes, '[routes]');
     var result = null;
     if(routes.length > 0){
       result = routes.map((route, index) => {
-        console.log(route, '[route]');
         return (
           <Route
             key = {index}

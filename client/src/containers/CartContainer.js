@@ -6,16 +6,48 @@ import {connect} from 'react-redux';
 import CartItem from '../components/componentsFE/cart/CartItem';
 import Cart from './../components/componentsFE/cart/Cart';
 import CartResult from '../components/componentsFE/cart/CartResult';
+import Popup from "../components/Popup/Popup";
 import {actDeleteTourInCart,actUpdateTourInCart} from '../actions/actCart';
 
 class CartContainer extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            isOpenPopup : false,
+        }
+    }
+
+    // truyen prop func cho cart result
+    handleOnclickAccept = () => {
+        let isOpenPopup = this.state.isOpenPopup;
+        this.setState({
+            isOpenPopup : !isOpenPopup
+        })
+        if(isOpenPopup === true){
+            console.log("aaaaaaaaa", '["aaaaaaaaa"]');
+        }else {
+            return;
+        }
+    }
+
+    showPopup = () => {
+        return(this.state.isOpenPopup === true) ? (
+            <Popup/>
+        ) : ""
+    }
+
     render(){
         var { cart } = this.props;
         return(
-            <Cart>
-                {this.showCartItem(cart)}
-                {this.showTotalAmount(cart)}
-            </Cart>
+            <>
+                <Cart>
+                    {this.showCartItem(cart)}
+                    {this.showTotalAmount(cart)}
+                </Cart>
+                <div className = "popup-accept">
+                    {this.showPopup()}
+                </div>
+            </>
         )
     }
     showCartItem = (cart) => {
@@ -49,27 +81,15 @@ class CartContainer extends Component {
     showTotalAmount = (cart) => {
         var result = null;
         if(cart.length > 0){
-            result = <CartResult cart={cart}/>
+            result = <CartResult 
+                        handleOnclickAccept = {this.handleOnclickAccept} 
+                        cart={cart}
+                    />
         }
         return result;
     }
 }
 
-
-// CartContainer.propTypes = {
-//     cart : PropTypes.arrayOf(PropTypes.shape({
-//         tour : PropTypes.shape({
-//             id : PropTypes.number.isRequired,
-//             name : PropTypes.string.isRequired,
-//             img : PropTypes.string.isRequired,
-//             price : PropTypes.number.isRequired,
-//             description : PropTypes.string,
-//             inventory : PropTypes.number.isRequired,
-//             rating : PropTypes.number.isRequired
-//         }),
-//         quantity : PropTypes.number.isRequired,
-//     })).isRequired
-// }
 
 const mapStateToProps = (state) => {
     return {

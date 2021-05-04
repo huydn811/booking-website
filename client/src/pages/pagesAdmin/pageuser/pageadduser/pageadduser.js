@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import {Container, Form, Button} from "react-bootstrap";
 import { connect } from "react-redux";
 import { actAddUserReq } from "../../../../actions/actUser";
+import { Formik } from 'formik';
+import * as  Yup from 'yup';
 import "./pageadduser.scss";
 
 class PageAddUser extends Component {
@@ -35,7 +37,7 @@ class PageAddUser extends Component {
                 var img_avatar = document.getElementById("img_avatar");
                 img_avatar.src = reader.result;
                 this.setState({
-                    frmUser : {
+                    frmEmployee : {
                         ...this.state.frmUser, 
                         imgBase : reader.result
                     }
@@ -45,9 +47,9 @@ class PageAddUser extends Component {
         }else {
             return null;
         }
-        console.log(this.state, '[this.state]');
     }
-    onSubmitFormAddUser = (e) => {
+
+    handleSubmit = (e) => {
         e.preventDefault();
         var user = this.state.frmUser;
         var { history } = this.props;
@@ -62,7 +64,7 @@ class PageAddUser extends Component {
             );
         });
         myPromisUser.then(()=>{
-            history.push("/admint/all-user");
+           history.push("/admint/all-user");
         })
     }
     render(){
@@ -71,65 +73,94 @@ class PageAddUser extends Component {
                  <div className="form">
                     <Container>
                         <legend>Add User</legend>
-                        <Form className="form_" encType="multipart/form-data" onSubmit = {this.onSubmitFormAddUser}>
-                            <Form.Group controlId="formBasicEmail">
-                                <Form.Control 
-                                    type="text" 
-                                    placeholder="User Name" 
-                                    name = "userName"
-                                    value = {this.state.frmUser.userName}
-                                    onChange = { this.handleInputOnChange }/>
-                                <Form.Text className="text-muted">
-                                </Form.Text>
-                            </Form.Group>
-                            <Form.Group controlId="formBasicEmail">
-                                <Form.Control 
-                                    type="password" 
-                                    placeholder="Password" 
-                                    name = "password"
-                                    value = { this.state.frmUser.password }
-                                    onChange = { this.handleInputOnChange }/>
-                                <Form.Text className="text-muted">
-                                </Form.Text>
-                            </Form.Group>
-                            <Form.Group controlId="formBasicEmail">
-                                <Form.Control 
-                                    type="email" 
-                                    placeholder="Email" 
-                                    name = "email"
-                                    value = { this.state.frmUser.email }
-                                    onChange = { this.handleInputOnChange }/>
-                                <Form.Text className="text-muted">
-                                </Form.Text>
-                            </Form.Group>
-                            <Form.Group controlId="formBasicEmail">
-                                <Form.Control 
-                                    type="number" 
-                                    placeholder="Number Phone" 
-                                    name = "numberPhoneUser"
-                                    value = { this.state.frmUser.numberPhoneUser }
-                                    onChange = { this.handleInputOnChange }/>
-                                <Form.Text className="text-muted">
-                                </Form.Text>
-                            </Form.Group>
-                            <Form.Group controlId="formBasicEmail">
-                                <input 
-                                    type="file" 
-                                    name="avatarUser"
-                                    // value = { this.state.frmUser.avatarUser }
-                                    onChange = { this.handleOnclickButtonChooseFile }
-                                    ref={this.fileInput} 
-                                /><br/>
-                                <div className = "img_">
-                                    <img id="img_avatar" src=""/>
-                                </div>
-                                <Form.Text className="text-muted">
-                                </Form.Text>
-                            </Form.Group>
-                            <Button variant="primary" type="submit">
-                                Create User
-                            </Button>
-                        </Form>
+                        <Formik
+                            initialValues={{
+                                userName: '',
+                                password: '',
+                                email: '',
+                                numberPhoneUser: '',
+                            }}
+                            validationSchema={
+                                Yup.object().shape({
+                                userName: Yup.string().required(),
+                                password: Yup.string().required(),
+                                email: Yup.string().email().required(),
+                                numberPhoneUser: Yup.number().required(),
+                            })}
+                            onSubmit = {
+                                (values) => {
+                                    console.log(values)
+                                }
+                            }
+                        >{({errors,handleChange,values, handleSubmit})=>(
+                                <Form className="form_" encType="multipart/form-data" onSubmit = {this.handleSubmit}>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Control 
+                                        type="text" 
+                                        placeholder="User Name" 
+                                        name = "userName"
+                                        value = {values.userName}
+                                        onChange = { handleChange }/>
+                                    <Form.Text className="text-muted">
+                                        {errors.userName}
+                                    </Form.Text>
+                                </Form.Group>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Control 
+                                        type="password" 
+                                        placeholder="Password" 
+                                        name = "password"
+                                        value = { values.password }
+                                        onChange = { handleChange }/>
+                                    <Form.Text className="text-muted">
+                                    {errors.password}
+                                    </Form.Text>
+                                </Form.Group>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Control 
+                                       
+                                        placeholder="Email" 
+                                        name = "email"
+                                        value = { values.email }
+                                        onChange = { handleChange }/>
+                                    <Form.Text className="text-muted">
+                                    {errors.email}
+                                    </Form.Text>
+                                </Form.Group>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Control 
+                                        type="number" 
+                                        placeholder="Number Phone" 
+                                        name = "numberPhoneUser"
+                                        value = { values.numberPhoneUser }
+                                        onChange = { handleChange }/>
+                                    <Form.Text className="text-muted">
+                                    {errors.numberPhoneUser}
+                                    </Form.Text>
+                                </Form.Group>
+                                <Form.Group controlId="formBasicEmail">
+                                    <input 
+                                        type="file" 
+                                        name="avatarUser"
+                                        // value = { this.state.frmUser.avatarUser }
+                                        onChange = { this.handleOnclickButtonChooseFile }
+                                        ref={this.fileInput} 
+                                    /><br/>
+                                    <div className = "img_">
+                                        <img id="img_avatar" src=""/>
+                                    </div>
+                                    <Form.Text className="text-muted">
+                                    </Form.Text>
+                                </Form.Group>
+                                <Button 
+                                    variant="primary" 
+                                    type="submit"                                
+                                >
+                                    Create User
+                                </Button>
+                            </Form>
+                            )}
+                        </Formik>
                     </Container>
                 </div>
             </div>

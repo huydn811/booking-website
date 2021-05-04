@@ -68,7 +68,6 @@ class CartItem extends Component {
                     </div>
                 </td>
                 <td>{this.showSubTotal(item.tour.priceTour, item.quantity)}$</td>
-                <td>pending...</td>
                 <td>
                     <button 
                         className="btn btn-sm btn-danger waves-effect waves-light" 
@@ -88,11 +87,6 @@ class CartItem extends Component {
     
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         item : state.cart,
-//     }
-// }
 const mapDispatchToProps = (dispatch, props) => {
     return {
         onUpdateProductInCart : (tour, quantity) => {

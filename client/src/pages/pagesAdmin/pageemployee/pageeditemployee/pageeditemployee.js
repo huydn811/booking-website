@@ -70,7 +70,6 @@ class PageEditEmployee extends Component {
         }else {
             return null;
         }
-        console.log(this.state, '[this.state]');
     }
 
     onSubmitFormEditEmployee = (e) => {

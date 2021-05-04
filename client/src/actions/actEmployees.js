@@ -26,7 +26,6 @@ export const actAddEmployeeReq = (employee) => {
     }
 }
 export const actAddEmployee = (employee) => {
-    console.log(employee, '[employee]');
     return {
         type : TypesEmployee.ADD_EMPLOYEE,
         employee
@@ -64,7 +63,6 @@ export const actFectchEmployeeID = (employee) => {
 }
 
 export const actUpdateEmployeeReq = (employee) => {
-    console.log(employee, '[employee]');
     return dispatch => {
         return callApi(`employee/update-employee/${employee._id}`, "PUT", employee)
         .then((res)=>{

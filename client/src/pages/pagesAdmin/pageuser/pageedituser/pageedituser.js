@@ -66,7 +66,6 @@ class PageEditUser extends Component {
             _id : userID,
             ...this.state,
         };
-        console.log(user, '[user]');
         var { history } = this.props;
         var thisPropsUser =  this.props;
         var myPromisUser = new Promise((myResolve, myReject) => {

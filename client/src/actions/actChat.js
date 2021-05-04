@@ -8,6 +8,9 @@ export const actFetchAllChatRoomReq = () => {
         .then(res => {
             dispatch(actFetchAllChatRoom(res.data))
         })
+        .catch(err =>{
+            console.log(err, '[err]');
+        })
     }
 }
 
@@ -21,9 +24,10 @@ export const actFetchAllChatRoom = (chatRooms) => {
 export const actFetchChatRoomByIDReq = (chatRoomID) => {
     return  dispatch => {
         return callApi(`chat/get-chatroom/${chatRoomID}`, "GET", null)
-        .then(res => {
+        .then( res => {
             dispatch(actFetchChatRoomByID(res.data))
         })
+        .catch((err) => console.log("err"))
     }
 }
 
@@ -33,3 +37,21 @@ export const actFetchChatRoomByID = (chatroomById) => {
         chatroomById
     }
 } 
+
+export const actAddMessageReq = (message) => {
+    return dispatch => {
+        return callApi("chat/create-message", "POST", message)
+        .then((res)=>{
+            dispatch(actAddMessage(res.data))
+        })
+        .catch((err) =>{
+            console.log(err, '[err]');
+        })
+    }
+}
+export const actAddMessage = (message) => {
+    return {
+        type : TypesChat.ADD_MESSAGES,
+        message
+    }
+}

@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import { routes } from "../../routes";
 import Header from "../../components/componentsFE/header/header";
 import Footer from "../../components/componentsFE/footer/footer";
+import ChatClient from "../../components/componentsChat/ChatDetail/chat-client";
 import HomePage from "../../pages/pagesFE/homepage/homepage";
 class rootFE extends Component {
     constructor(props){
@@ -28,12 +29,13 @@ class rootFE extends Component {
     render() {
         return (
             <div>
-                <Header></Header>
+                <Header />
                     <Switch>
                         { this.showContentMenu(routes) }
                         {/* <Route exact={true} path="/" component={HomePage} /> */}
                     </Switch>
-                <Footer></Footer>
+                    <ChatClient/>
+                <Footer/>
             </div>
         );
     }
