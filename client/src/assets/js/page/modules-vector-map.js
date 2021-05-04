@@ -1,13 +1,11 @@
-"use strict";
-
 $('#visitorMap').vectorMap({
   map: 'world_en',
   backgroundColor: '#ffffff',
   borderColor: '#f2f2f2',
-  borderOpacity: .8,
+  borderOpacity: 0.8,
   borderWidth: 1,
   hoverColor: '#000',
-  hoverOpacity: .8,
+  hoverOpacity: 0.8,
   color: '#ddd',
   normalizeFunction: 'linear',
   selectedRegions: false,
@@ -28,50 +26,48 @@ $('#visitorMap').vectorMap({
     ca: '<div className="jqvmap-circle"></div>',
     tr: '<div className="jqvmap-circle"></div>',
   },
-  onRegionClick: function(element, code, region) {
-    var opts = {
+  onRegionClick(element, code, region) {
+    const opts = {
       title: 'Choosed',
-      message: 'You clicked "'
-      + region
-      + '" which has the code: '
-      + code.toUpperCase()
+      message: `You clicked "${
+        region
+      }" which has the code: ${
+        code.toUpperCase()}`,
     };
 
     iziToast.info(opts);
-  }
+  },
 });
 $('#visitorMap2').vectorMap({
   map: 'world_en',
   backgroundColor: '#ffffff',
   borderColor: '#f2f2f2',
-  borderOpacity: .8,
+  borderOpacity: 0.8,
   borderWidth: 1,
   hoverColor: '#000',
-  hoverOpacity: .8,
+  hoverOpacity: 0.8,
   color: '#ddd',
   normalizeFunction: 'linear',
   selectedRegions: false,
   showTooltip: true,
-  onRegionClick: function(element, code, region) {
-    var message = 'You clicked "'
-      + region
-      + '" which has the code: '
-      + code.toUpperCase();
+  onRegionClick(element, code, region) {
+    const message = `You clicked "${
+      region
+    }" which has the code: ${
+      code.toUpperCase()}`;
 
-    $("#flag-icon").removeClass (function (index, className) {
-      return (className.match (/(^|\s)flag-icon-\S+/g) || []).join(' ');
-    });
-    $("#flag-icon").addClass('flag-icon-' + code);
-  }
+    $('#flag-icon').removeClass((index, className) => (className.match(/(^|\s)flag-icon-\S+/g) || []).join(' '));
+    $('#flag-icon').addClass(`flag-icon-${code}`);
+  },
 });
 $('#visitorMap3').vectorMap({
   map: 'indonesia_id',
   backgroundColor: '#ffffff',
   borderColor: '#f2f2f2',
-  borderOpacity: .8,
+  borderOpacity: 0.8,
   borderWidth: 1,
   hoverColor: '#000',
-  hoverOpacity: .8,
+  hoverOpacity: 0.8,
   color: '#ddd',
   normalizeFunction: 'linear',
   selectedRegions: false,

@@ -10,7 +10,7 @@
 //                 onChange = {this.handleInputOnChange}
 //               >
 //               </input>
-//               <button 
+//               <button
 //                 id="send"
 //                 type = "submit"
 //                 onClick = {this.handleOnclickSendMessage}

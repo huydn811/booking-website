@@ -1,14 +1,15 @@
-import { combineReducers } from "redux";
-import tour from "./Tour";
+import { combineReducers } from 'redux';
+import tour from './Tour';
 import itemEditing from './itemEditing';
-import employee from "./employee";
-import user from "./user";
-import login from "./login";
-import cart from "./cart";
-import search from "./search";
+import employee from './employee';
+import user from './user';
+import login from './login';
+import cart from './cart';
+import search from './search';
 import chatRoom from './chat';
 import customer from './customer';
-const appReducers = combineReducers ({
+
+const appReducers = combineReducers({
   tour,
   employee,
   itemEditing,
@@ -17,7 +18,7 @@ const appReducers = combineReducers ({
   cart,
   search,
   chatRoom,
-  customer
+  customer,
 });
 
 export default appReducers;

@@ -1,53 +1,22 @@
-import * as TypesLogin from "../constants/ActionTypeLogin";
-import callApi from "../utils/ApiCaller";
+import * as TypesLogin from '../constants/ActionTypeLogin';
+import callApi from '../utils/ApiCaller';
 
+export const actLogin = (dataUserLogin) => ({
+  type: TypesLogin.USER_LOGIN,
+  dataUserLogin,
+});
 
-export const actLoginReq = (dataUserLogin) => {
-    return dispatch => {
-        return callApi("login", "POST",dataUserLogin )
-        .then((res) => {
-            // const tokenLogin = res.data.accessToken;
-            // if(res.data.code == 200){
-                // localStorage.setItem("accessToken", tokenLogin);
-                // localStorage.setItem("login", res.data);
-            // }
-            dispatch(actLogin(res.data));
-        })
-    }
-}
-export const actLogin = (dataUserLogin) => {
-    return {
-        type : TypesLogin.USER_LOGIN,
-        dataUserLogin,
-    }
-}
+export const actLoginReq = (dataUserLogin) => (dispatch) => callApi('login', 'POST', dataUserLogin)
+  .then((res) => {
+    dispatch(actLogin(res.data));
+  });
 
-export const actRegisterReq = (dataUserRegister) => {
-    return dispatch => {
-        return callApi("register", "POST", dataUserRegister)
-        .then((res) => {
-            dispatch(actRegister(res.data))
-        })
-    }
-}
-export const actRegister = (dataUserRegister) => {
-    return {
-        type : TypesLogin.USER_REGISTER,
-        dataUserRegister
-    }
-}
+export const actRegister = (dataUserRegister) => ({
+  type: TypesLogin.USER_REGISTER,
+  dataUserRegister,
+});
 
-// export const actLogoutReq = (dataUserLogout) => {
-//     return dispatch => {
-//         return callApi("logout","POST",dataUserLogout)
-//         .then((res) => {
-//             dispatch(actLogout(res.data))
-//         })
-//     }
-// }
-// export const actLogout = (dataUserLogout) => {
-//     return {
-//         type : TypesLogin.USER_LOGOUT,
-//         dataUserLogout
-//     }
-// }
+export const actRegisterReq = (dataUserRegister) => (dispatch) => callApi('register', 'POST', dataUserRegister)
+  .then((res) => {
+    dispatch(actRegister(res.data));
+  });

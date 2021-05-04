@@ -1,40 +1,39 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { USER_IMG } from "../../../constants/Service";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { USER_IMG } from '../../../constants/Service';
 
 class MessageItem extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-      isSentByCurrentUser  : false
-    }
+      isSentByCurrentUser: false,
+    };
   }
+
   render() {
-      return (
-        <div id="chat_messages" className = {this.props.userIsLogging.dataUserLogin ? "my-message" : "other-message"} >
-          <div className="profile other-profile">
-            <img src="" width="30" height="30" />
-            <span>Admin</span>
-          </div>
-          <div className="message other-message"></div>
-          <div className="profile my-profile">
-            <span>{this.props.userIsLogging.dataUserLogin ? this.props.userIsLogging.dataUserLogin.user.userName : ""}</span>
-            <img
-              src={`${USER_IMG}/${this.props.userIsLogging.dataUserLogin ? this.props.userIsLogging.dataUserLogin.user.avatarUser : ""}`}
-              width="30"
-              height="30"
-            />
-          </div>
-          <div className="message my-message">aaa</div>
+    return (
+      <div id="chat_messages" className={this.props.userIsLogging.dataUserLogin ? 'my-message' : 'other-message'}>
+        <div className="profile other-profile">
+          <img src="" width="30" height="30" />
+          <span>Admin</span>
         </div>
-      );
+        <div className="message other-message" />
+        <div className="profile my-profile">
+          <span>{this.props.userIsLogging.dataUserLogin ? this.props.userIsLogging.dataUserLogin.user.userName : ''}</span>
+          <img
+            src={`${USER_IMG}/${this.props.userIsLogging.dataUserLogin ? this.props.userIsLogging.dataUserLogin.user.avatarUser : ''}`}
+            width="30"
+            height="30"
+          />
+        </div>
+        <div className="message my-message">aaa</div>
+      </div>
+    );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    userIsLogging: state.login,
-  };
-};
+const mapStateToProps = (state) => ({
+  userIsLogging: state.login,
+});
 
 export default connect(mapStateToProps, null)(MessageItem);
