@@ -1,6 +1,13 @@
+
+import { history } from '../store'
+
+import Toastify from '../utils/toastify'
+
 import * as Types from '../constants/ActionTypeTour';
 
-const initialState = [];
+const initialState = [
+];
+
 const findIndex = (tours, id) => {
   let result = -1;
   tours.forEach((tour, index) => {
@@ -14,13 +21,17 @@ const findIndex = (tours, id) => {
 const tours = (state = initialState, action) => {
   let index = -1;
   const tourID = action.id;
-  const { tour } = action;
+  const { tour, isSuccess } = action;
+
   switch (action.type) {
     case Types.FETCH_TOURS:
       state = action.tours;
       return [...state];
     case Types.ADD_TOURS:
-      state.push(action.tour);
+      if (isSuccess) {
+        Toastify({ msg: 'Create tour successfully', type: 'success' });
+        state.push(action.tour);
+      }
       return [...state];
     case Types.DELETE_TOURS:
       index = findIndex(state, tourID);
@@ -30,6 +41,7 @@ const tours = (state = initialState, action) => {
       index = findIndex(state, action.tour._id);
       state[index] = tour;
       return [...state];
+
     default: return [...state];
   }
 };

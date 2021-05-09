@@ -7,10 +7,6 @@ import { actFetchToursReq } from '../../../actions/actTour';
 import { TOUR_IMG } from '../../../constants/Service';
 
 class pageAllTour extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.fetchAllTour();
   }

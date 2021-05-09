@@ -20,14 +20,14 @@ class ChatClient extends Component {
   }
 
   componentWillMount() {
-    this.socket = io('http://localhost:9000', {
-      withCredentials: true,
-    });
+    // this.socket = io('http://localhost:9000', {
+    //   withCredentials: true,
+    // });
 
     // client take data from server
-    this.socket.on('newMessage-server-sent', (data) => {
-      this.newMessage(data);
-    });
+    // this.socket.on('newMessage-server-sent', (data) => {
+    //   this.newMessage(data);
+    // });
     // client send data to server
     // this.socket.emit("newMessage-client-sent", "hello");
   }
