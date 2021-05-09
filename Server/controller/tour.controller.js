@@ -38,9 +38,9 @@ module.exports.getTourID = (req, res) => {
 
 module.exports.updateTour = async (req, res) => {
     let tourID = req.params.tourID;
-    let updateTour = new Tour(req.body);
-
-    tour.avatarTour = 'demo.jpeg';
+    let updateTour = req.body
+    
+    updateTour.avatarTour = 'demo.jpeg';
 
     Tour.findByIdAndUpdate({ _id: tourID }, { $set: updateTour })
         .then((tour) => {

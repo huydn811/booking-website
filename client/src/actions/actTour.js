@@ -49,12 +49,13 @@ export const getTourById = (_id) => (dispatch) => callApi(`tour/get-tourid/${_id
     throw err;
   });
 
-export const actEditTour = (tour) => ({
+export const updateTourAction = (tour) => ({
   type: Types.UPDATE_TOURS,
   tour,
+  isSuccess: true
 });
 
-export const actEditTourReq = (tour) => (dispatch) => callApi(`tour/update-tour/${tour._id}`, 'PUT', tour)
+export const updateTour = (tour) => (dispatch) => callApi(`tour/update-tour/${tour._id}`, 'PUT', tour)
   .then((res) => {
-    dispatch(actEditTour(res.data));
+    return dispatch(updateTourAction(res.data));
   });

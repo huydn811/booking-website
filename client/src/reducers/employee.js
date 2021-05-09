@@ -1,7 +1,7 @@
 import * as TypesEmployee from '../constants/ActionTypeEmployee';
 
 const initialStateEmployee = [];
-const findIndex = (tours, id) => {
+const findIndex = (tours = [], id) => {
   let result = -1;
   tours.forEach((tour, index) => {
     if (tour._id === id) {
