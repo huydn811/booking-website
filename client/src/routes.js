@@ -8,7 +8,7 @@ import NotFoundPage from './pages/pagesFE/notfoundpage/notfoundpage';
 // admin page
 import PageDashBoard from './pages/pagesAdmin/pagedashboard/pagedashboard';
 // admin page tour
-import AllTourPage from './pages/pagesAdmin/pagetour/pagealltour/pagealltour';
+import AllTourPage from './pages/pagesAdmin/pagetour/pagealltour';
 import AddTourPage from './pages/pagesAdmin/pagetour/pageaddtour/pageaddtour';
 import EditTourPage from './pages/pagesAdmin/pagetour/pageedittour/pageedittour';
 // admin page user

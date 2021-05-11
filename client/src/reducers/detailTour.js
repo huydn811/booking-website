@@ -1,7 +1,7 @@
 import * as Types from '../constants/ActionTypeTour';
 
 const initialState = {
-  tour: {}
+  singleTour: {}
 }
 
 const tours = (state = initialState, action) => {
@@ -10,7 +10,7 @@ const tours = (state = initialState, action) => {
       console.log(action)
       return {
         ...state,
-        tour: { ...state.tour, ...action.tour }
+        singleTour: { ...state.singleTour, ...action.tour }
       };
 
     default: return state;

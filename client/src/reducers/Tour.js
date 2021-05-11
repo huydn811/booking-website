@@ -5,8 +5,15 @@ import Toastify from '../utils/toastify'
 
 import * as Types from '../constants/ActionTypeTour';
 
+<<<<<<< HEAD
 const initialState = [
 ];
+=======
+const initialState = {
+  listTour: [],
+  isRefresh: false
+}
+>>>>>>> 77b0b91b39f4b5660fb53567408ba5182df04380
 
 const findIndex = (tours, id) => {
   let result = -1;
@@ -25,24 +32,35 @@ const tours = (state = initialState, action) => {
 
   switch (action.type) {
     case Types.FETCH_TOURS:
-      state = action.tours;
-      return [...state];
+      return { ...state, listTour: action.tours }
     case Types.ADD_TOURS:
       if (isSuccess) {
         Toastify({ msg: 'Create tour successfully', type: 'success' });
         state.push(action.tour);
       }
+<<<<<<< HEAD
       return [...state];
+=======
+      return state
+>>>>>>> 77b0b91b39f4b5660fb53567408ba5182df04380
     case Types.DELETE_TOURS:
-      index = findIndex(state, tourID);
+      index = findIndex(state.listTour, tourID);
       state.splice(index, 1);
-      return [...state];
+      return state
     case Types.UPDATE_TOURS:
-      index = findIndex(state, action.tour._id);
+
+      index = findIndex(state.listTour, action.tour._id);
       state[index] = tour;
+<<<<<<< HEAD
       return [...state];
 
     default: return [...state];
+=======
+      Toastify({ msg: 'Update tour successfully', type: 'success' });
+      return { ...state, isRefresh: true }
+
+    default: return state
+>>>>>>> 77b0b91b39f4b5660fb53567408ba5182df04380
   }
 };
 

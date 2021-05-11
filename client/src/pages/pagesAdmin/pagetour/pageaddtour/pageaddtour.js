@@ -1,9 +1,9 @@
-import React, { Component, useState } from 'react';
-import { Form, Button, Container } from 'react-bootstrap';
-
-import { useDispatch, useSelector } from 'react-redux';
-
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { Formik } from 'formik';
+import React, { useState } from 'react';
+import { Button, Container, Form } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -43,11 +43,12 @@ const PageAddTour = () => {
 
     const payload = { ...values, ...refactorData }
     dispatch(actAddTourReq(payload))
-    // Toastify({ msg: 'Create tour successfully', type: 'success' });
   }
 
   return (
     <div className="pageaddtour">
+
+
 
       <div className="form">
         <Container>
@@ -201,7 +202,16 @@ const PageAddTour = () => {
           </Formik>
         </Container>
       </div>
+
+
+
+
+
     </div>
+
+
+
+
 
   )
 }

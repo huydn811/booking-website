@@ -22,7 +22,7 @@ const DetailPage = () => {
 
   const { tourState } = useSelector((cS) => cS)
 
-  const { tour: _tour } = tourState
+  const { singleTour: _tour } = tourState
 
   const showDetailTour = (tour) => {
     if (tour) {
