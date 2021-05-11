@@ -1,7 +1,19 @@
 const Tour = require("../model/tour");
 
+const fuzzySearch = (text) => {
+    const regex = text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+    return new RegExp(regex, 'gi');
+}
+
 module.exports.getAllTour = (req, res) => {
-    Tour.find()
+    const { q } = req.query;
+    const conditionFind = {};
+    if (q) {
+        conditionFind.tourName = fuzzySearch(q)
+    }
+
+    console.log(conditionFind)
+    Tour.find(conditionFind)
         .then((tour) => {
             res.json(tour);
         })
@@ -39,7 +51,7 @@ module.exports.getTourID = (req, res) => {
 module.exports.updateTour = async (req, res) => {
     let tourID = req.params.tourID;
     let updateTour = req.body
-    
+
     updateTour.avatarTour = 'demo.jpeg';
 
     Tour.findByIdAndUpdate({ _id: tourID }, { $set: updateTour })
