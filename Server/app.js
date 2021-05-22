@@ -109,34 +109,34 @@ mongoose.connect(process.env.MONGO_URL,{
             // }
             // findMsgExist();
             // //create chatroom
-            createChatRoom = async () => {
-                let room = new ChatRoom({
-                    messageID : message._id,
-                    userID : dataNewMessage.userID,
-                    roomMaster : "Admin"
-                });
-                let userIDExists = room.userID;
-                //check room exists ?
-                let checkRoomExists = await ChatRoom.findOne({userID : userIDExists})
-                if(!checkRoomExists){
-                    room.save((err)=> {
-                        if(err) console.log(err, '[err]');
-                    })
-                }else{
-                    ChatRoom.findByIdAndUpdate({userID : userIDExists}, {
-                        $push: {
-                            messageID : [{
-                                messageID : message._id
-                            }],
-                            userID : [{
-                                userID : dataNewMessage.userID
-                            }]
-                        }
-                    })
-                    console.log("room already", '["room already"]');
-                }
-            }
-            createChatRoom();
+            // createChatRoom = async () => {
+            //     let room = new ChatRoom({
+            //         messageID : message._id,
+            //         userID : dataNewMessage.userID,
+            //         roomMaster : "Admin"
+            //     });
+            //     let userIDExists = room.userID;
+            //     //check room exists ?
+            //     let checkRoomExists = await ChatRoom.findOne({userID : userIDExists})
+            //     if(!checkRoomExists){
+            //         room.save((err)=> {
+            //             if(err) console.log(err, '[err]');
+            //         })
+            //     }else{
+            //         ChatRoom.findByIdAndUpdate({userID : userIDExists}, {
+            //             $push: {
+            //                 messageID : [{
+            //                     messageID : message._id
+            //                 }],
+            //                 userID : [{
+            //                     userID : dataNewMessage.userID
+            //                 }]
+            //             }
+            //         })
+            //         console.log("room already", '["room already"]');
+            //     }
+            // }
+            // createChatRoom();
         })  
         
         socket.on('sendMessage', (message,callback) => {
