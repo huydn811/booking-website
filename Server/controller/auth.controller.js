@@ -1,8 +1,8 @@
 var User = require("../model/user");
 var jwt = require('jsonwebtoken');
 module.exports.login = async (req, res)=> {
-    var email = req.body.txt_userName;
-    var password = req.body.txt_password;
+    var email = req.body.email;
+    var password = req.body.password;
     var user = await User.findOne({email : email});
     if(!user) {
         return res.json({
