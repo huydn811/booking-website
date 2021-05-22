@@ -2,8 +2,8 @@ var Message = require("../model/message");
 
 module.exports.getAllMessage = async (req, res) => { //noi bang n-1
     let message = await Message.find()
-    .populate({ path: "userID", populated: { path: "message" }})
-    .populate({ path: "chatroomID"})
+    .populate({ path: "messages", populate: { path: 'userID' }})
+    // .populate({ path: "chatroomID"})
     .exec();
     res.json(message);
 }
