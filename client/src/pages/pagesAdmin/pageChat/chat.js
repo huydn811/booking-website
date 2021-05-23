@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
 import { actFetchAllChatRoomReq } from '../../../actions/actChat';
+import { actionGetCurrentUser } from '../../../actions/actCurrentUser';
 import { USER_IMG } from '../../../constants/Service';
 import './chat.scss';
 import ChatDetail from './chatdetail';
 
 
-const PageChat = () => {
+const PageChat = ({ match }) => {
   const dispatch = useDispatch();
 
   const [state, setState] = useState({
@@ -29,67 +30,58 @@ const PageChat = () => {
       },
     },
   })
-  const socket = io('http://localhost:9000', {
-    withCredentials: true,
-  });
+
+  const { chatRoom: { chatRooms }, login: { dataUserLogin: { user } }, currentUserState } = useSelector(currentState => currentState)
+
+
 
   useEffect(() => {
     dispatch(actFetchAllChatRoomReq())
-  }, [dispatch])
-
-  useEffect(() => {
-
-    // client take data from server
-    socket.on('newMessage-server-sent', (data) => {
-    });
-
-    // client send data to server
-    // socket.emit("newMessage-client-sent","hello")
-    // this.props.fetchAllChatRoom();
-  }, [dispatch, socket])
+    dispatch(actionGetCurrentUser(user._id));
+  }, [dispatch, user])
 
 
-  const { chatRooms } = useSelector(currentState => currentState.chatRoom)
+  console.log({ chatRooms })
 
   const renderListChat = () => {
     let result = null;
-    if (chatRooms.length > 0) {
-      result = chatRooms.map((item, idx) => {
-        if (item !== undefined) {
-          const result2 = item.map((val, idex) => {
-            if (val.userID !== null || undefined) {
-              return (
-                <Link
-                  key={idex}
-                  className="navLink"
-                  to={`/admin/chat/${val._id}`}
-                >
-                  <div className="msg online">
-                    <img
-                      className="msg-profile"
-                      src={`${USER_IMG}/${val.userID.avatarUser}`}
-                      alt=""
-                    />
-                    <div className="msg-detail">
-                      <div className="msg-username">
-                        {' '}
-                        {val.userID.userName}
-                        {' '}
-                      </div>
-                      <div className="msg-content">
-                        <span className="msg-message">zzzzzzzzzzz</span>
-                        {/* <span className="msg-date">20m</span> */}
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              );
-            }
-          });
-          return result2;
-        }
-      });
-    }
+    // if (chatRooms.length > 0) {
+    //   result = chatRooms.map((item, idx) => {
+    //     if (item !== undefined) {
+    //       const result2 = item.map((val, idex) => {
+    //         if (val.userID !== null || undefined) {
+    //           return (
+    //             <Link
+    //               key={idex}
+    //               className="navLink"
+    //               to={`/admin/chat/${val._id}`}
+    //             >
+    //               <div className="msg online">
+    //                 <img
+    //                   className="msg-profile"
+    //                   src={`${USER_IMG}/${val.userID.avatarUser}`}
+    //                   alt=""
+    //                 />
+    //                 <div className="msg-detail">
+    //                   <div className="msg-username">
+    //                     {' '}
+    //                     {val.userID.userName}
+    //                     {' '}
+    //                   </div>
+    //                   <div className="msg-content">
+    //                     <span className="msg-message">zzzzzzzzzzz</span>
+    //                     {/* <span className="msg-date">20m</span> */}
+    //                   </div>
+    //                 </div>
+    //               </div>
+    //             </Link>
+    //           );
+    //         }
+    //       });
+    //       return result2;
+    //     }
+    //   });
+    // }
     return result;
   }
   return (
@@ -117,7 +109,7 @@ const PageChat = () => {
           {/* list user chat */}
           {renderListChat()}
         </div>
-        <ChatDetail match={this.props.match} />
+        <ChatDetail match={match} />
         <div className="detail-area">
           <div className="detail-area-header">
             <div className="msg-profile group">
@@ -219,19 +211,19 @@ const PageChat = () => {
               Shared photos
             </div>
             <div className="detail-photo-grid">
-              <img src="https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2168&q=80" />
-              <img src="https://images.unsplash.com/photo-1516085216930-c93a002a8b01?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
-              <img src="https://images.unsplash.com/photo-1458819714733-e5ab3d536722?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=933&q=80" />
-              <img src="https://images.unsplash.com/photo-1520013817300-1f4c1cb245ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2287&q=80" />
-              <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2247&q=80" />
-              <img src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80" />
-              <img src="https://images.unsplash.com/photo-1560393464-5c69a73c5770?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1301&q=80" />
-              <img src="https://images.unsplash.com/photo-1506619216599-9d16d0903dfd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2249&q=80" />
-              <img src="https://images.unsplash.com/photo-1481349518771-20055b2a7b24?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2309&q=80" />
+              <img alt="" src="https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2168&q=80" />
+              <img alt="" src="https://images.unsplash.com/photo-1516085216930-c93a002a8b01?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
+              <img alt="" src="https://images.unsplash.com/photo-1458819714733-e5ab3d536722?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=933&q=80" />
+              <img alt="" src="https://images.unsplash.com/photo-1520013817300-1f4c1cb245ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2287&q=80" />
+              <img alt="" src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2247&q=80" />
+              <img alt="" src="https://images.unsplash.com/photo-1559181567-c3190ca9959b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1300&q=80" />
+              <img alt="" src="https://images.unsplash.com/photo-1560393464-5c69a73c5770?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1301&q=80" />
+              <img alt="" src="https://images.unsplash.com/photo-1506619216599-9d16d0903dfd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2249&q=80" />
+              <img alt="" src="https://images.unsplash.com/photo-1481349518771-20055b2a7b24?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2309&q=80" />
 
-              <img src="https://images.unsplash.com/photo-1473170611423-22489201d919?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2251&q=80" />
-              <img src="https://images.unsplash.com/photo-1579613832111-ac7dfcc7723f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
-              <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2189&q=80" />
+              <img alt="" src="https://images.unsplash.com/photo-1473170611423-22489201d919?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2251&q=80" />
+              <img alt="" src="https://images.unsplash.com/photo-1579613832111-ac7dfcc7723f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80" />
+              <img alt="" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2189&q=80" />
             </div>
             <div className="view-more">View More</div>
           </div>

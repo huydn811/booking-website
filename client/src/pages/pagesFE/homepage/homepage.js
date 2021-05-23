@@ -10,6 +10,7 @@ import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.scss';
+import { history } from '../../../store'
 import { actFetchToursReq } from '../../../actions/actTour';
 import { TOUR_IMG } from '../../../constants/Service';
 
@@ -25,7 +26,7 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const [state, setState] = useState({ isOpenSlide: false, })
 
-  const { login, tour: { listTour } } = useSelector(cS => cS)
+  const { login: { isLogin }, tour: { listTour } } = useSelector(cS => cS)
 
   useEffect(() => {
     dispatch(actFetchToursReq())
@@ -125,6 +126,8 @@ const HomePage = () => {
     return result;
   }
 
+
+  if (!isLogin) return history.push('/login')
   return (
     <div>
       {/* <Header/> */}
