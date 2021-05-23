@@ -1,20 +1,19 @@
 var ChatRoom = require("../model/chatroom");
+const User = require("../model/user");
 
 module.exports.getAllRoom = async (req,res) => {
     let room = await ChatRoom.find()
-    .populate({path : "userID"})
+    .populate({ path: "messages", populate: { path: 'userID' }})
     .populate({ path: "messageID" })
     .exec();
     res.json(room);
 }
 
-module.exports.getChatRoomByID = async (req, res) => {4
+module.exports.getChatRoomByID = async (req, res) => {
     let chatRoomID = req.params.id;
-    await ChatRoom.findOne({_id : chatRoomID })
-    .populate({ path: "userID" })
+    await ChatRoom.findOne({ _id : chatRoomID })
     .populate({ path: "messageID" })
     .then((chatroom)=> {
-        console.log(chatroom, '[chatroom]');
         res.json(chatroom);
     })
     .catch((err)=> {
@@ -22,21 +21,19 @@ module.exports.getChatRoomByID = async (req, res) => {4
     })
 }
 module.exports.createChatRoom = async (req, res) => {
-    let room = new ChatRoom(req.body);
-    let userIDExists = room.userID;
-    //check room exists ?
-    let checkRoomExists = await ChatRoom.findOne({userID : userIDExists})
-    if(!checkRoomExists){
-        room.save()
-        .then((room)=> {
-            res.json(room);
+    try {
+        const { userID } = req.body;
+        const  room = new ChatRoom(req.body);
+        const chatroom = await ChatRoom.create(room);
+        const user = await User.findOneAndUpdate({_id : userID} , { $set : {chatRoomID : chatroom._id}});
+        console.log(user, '[user]');
+        res.status(200).json({
+            chatroom
         })
-        .catch((err)=>{
-            console.log(err, '[err]');
-        })
-    }else{
-        res.json({
-            message : "room is already!"
+    } catch (error) {
+        res.status(400).json({
+            error
         })
     }
+
 }

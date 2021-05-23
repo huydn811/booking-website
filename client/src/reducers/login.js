@@ -14,7 +14,7 @@ const persistConfig = {
 const Login = (state = initialState, action) => {
   switch (action.type) {
     case TypesLogin.USER_LOGIN:
-      if (action.dataUserLogin.code == 200) {
+      if (action.dataUserLogin.code === 200) {
         state.isLogin = true;
         state.dataUserLogin = action.dataUserLogin;
         // localStorage.setItem("login", JSON.stringify(state));

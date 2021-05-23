@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import './navbar.scss';
 
 class NavBar extends Component {
@@ -216,7 +216,7 @@ class NavBar extends Component {
               onClick={() => this.setState({ statusDropdown: !statusDropdown })}
             >
               <Link to="#" data-toggle="dropdown" className="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="../../../../img/121241321_670001800616075_329923169218267049_o.jpg" className="rounded-circle mr-1" />
+                <img alt="image1" src="../../../../img/121241321_670001800616075_329923169218267049_o.jpg" className="rounded-circle mr-1" />
                 <div className="d-sm-none d-lg-inline-block">
                   Hi,
                   {this.props.userIsLogging.dataUserLogin.user.userName}

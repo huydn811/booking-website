@@ -5,7 +5,8 @@ export const actFetchTours = (tours) => ({
   type: Types.FETCH_TOURS,
   tours, // tours : tours
 });
-export const actFetchToursReq = () => (dispatch) => callApi('tour/get-all-tour', 'GET', null)
+
+export const actFetchToursReq = () => (dispatch) => callApi('tour/get-all-tour', 'GET')
   .then((res) => {
     dispatch(actFetchTours(res.data));
   });
@@ -13,6 +14,7 @@ export const actFetchToursReq = () => (dispatch) => callApi('tour/get-all-tour',
 export const actAddTour = (tour) => ({
   type: Types.ADD_TOURS,
   tour,
+  isSuccess: true
 });
 
 export const actAddTourReq = (tour) => (dispatch) => callApi('tour/add-tour', 'POST', tour)
@@ -34,25 +36,26 @@ export const actDeleteTourReq = (id) => (dispatch) => {
   }
 };
 
-export const actGetTourByID = (tour) => ({
+export const getTourByIdAction = (tour) => ({
   type: Types.GET_TOUR_BY_ID,
   tour,
 });
 
-export const actGetTourByIDReq = (tourID) => (dispatch) => callApi(`tour/get-tourid/${tourID}`, 'GET', null)
+export const getTourById = (_id) => (dispatch) => callApi(`tour/get-tourid/${_id}`, 'GET')
   .then((res) => {
-    dispatch(actGetTourByID(res.data));
+    dispatch(getTourByIdAction(res.data));
   })
   .catch((err) => {
     throw err;
   });
 
-export const actEditTour = (tour) => ({
+export const updateTourAction = (tour) => ({
   type: Types.UPDATE_TOURS,
   tour,
+  isSuccess: true
 });
 
-export const actEditTourReq = (tour) => (dispatch) => callApi(`tour/update-tour/${tour._id}`, 'PUT', tour)
+export const updateTour = (tour) => (dispatch) => callApi(`tour/update-tour/${tour._id}`, 'PUT', tour)
   .then((res) => {
-    dispatch(actEditTour(res.data));
+    return dispatch(updateTourAction(res.data));
   });

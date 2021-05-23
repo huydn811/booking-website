@@ -22,6 +22,10 @@ var userSchema =  new mongoose.Schema({
     numberPhoneUser : {
         type : Number,
         trim : true,
+    },
+    chatRoomID : {
+        type : mongoose.Schema.Types.ObjectId,
+        default : null
     }
 });
 

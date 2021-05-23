@@ -1,9 +1,9 @@
 import * as TypesChat from '../constants/ActionChat';
 import callApi from '../utils/ApiCaller';
 
-export const actFetchAllChatRoom = (chatRooms) => ({
+export const actFetchAllChatRoom = (payload) => ({
   type: TypesChat.FETCH_ALL_CHATROOM,
-  chatRooms,
+  payload,
 });
 
 export const actFetchAllChatRoomReq = () => (dispatch) => callApi('chat/get-all-chatroom', 'GET', null)

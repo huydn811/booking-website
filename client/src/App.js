@@ -4,6 +4,7 @@ import RootAdmin from './pages/pagesAdmin/rootAdmin';
 import RootFE from './pages/pagesFE/rootFE';
 import RootAuth from './pages/pagesAuth/rootAuth';
 import NotFoundPage from './pages/pagesFE/notfoundpage/notfoundpage';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 class App extends Component {
   showContentMenu = (routes) => {
