@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
-import { routes } from '../../routes';
-import Header from '../../components/componentsFE/header/header';
-import Footer from '../../components/componentsFE/footer/footer';
+import { Route, Switch } from 'react-router-dom';
 import ChatClient from '../../components/componentsChat/ChatDetail/chat-client';
-import HomePage from './homepage/homepage';
+import Footer from '../../components/componentsFE/footer/footer';
+import Header from '../../components/componentsFE/header/header';
+import { routes } from '../../routes';
 
 class rootFE extends Component {
-  constructor(props) {
-    super(props);
-  }
-
     showContentMenu = (routes) => {
       let result = null;
       if (routes.length > 0) {

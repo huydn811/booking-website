@@ -31,19 +31,22 @@ const tours = (state = initialState, action) => {
     case Types.ADD_TOURS:
       if (isSuccess) {
         Toastify({ msg: 'Create tour successfully', type: 'success' });
-        state.push(action.tour);
+        state.listTour.push(action.tour);
       }
       return state
     case Types.DELETE_TOURS:
       index = findIndex(state.listTour, tourID);
-      state.splice(index, 1);
+      state.listTour.splice(index, 1);
       return state
     case Types.UPDATE_TOURS:
 
       index = findIndex(state.listTour, action.tour._id);
-      state[index] = tour;
+      state.listTour[index] = tour;
       Toastify({ msg: 'Update tour successfully', type: 'success' });
       return { ...state, isRefresh: true }
+    case Types.SEARCH_TOUR:
+
+      return { ...state, listTour: action.payload }
 
     default: return state
   }

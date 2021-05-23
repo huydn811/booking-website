@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { USER_IMG } from '../../../constants/Service';
 
 class MessageItem extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.state = {
       isSentByCurrentUser: false,
@@ -14,13 +14,14 @@ class MessageItem extends Component {
     return (
       <div id="chat_messages" className={this.props.userIsLogging.dataUserLogin ? 'my-message' : 'other-message'}>
         <div className="profile other-profile">
-          <img src="" width="30" height="30" />
+          <img alt="" src="" width="30" height="30" />
           <span>Admin</span>
         </div>
         <div className="message other-message" />
         <div className="profile my-profile">
           <span>{this.props.userIsLogging.dataUserLogin ? this.props.userIsLogging.dataUserLogin.user.userName : ''}</span>
           <img
+            alt=""
             src={`${USER_IMG}/${this.props.userIsLogging.dataUserLogin ? this.props.userIsLogging.dataUserLogin.user.avatarUser : ''}`}
             width="30"
             height="30"
