@@ -1,7 +1,7 @@
 const User = require("../model/user");
 
-module.exports.getAllUser = (req, res) => {
-    let user = User.find()
+module.exports.getAllUser = async (req, res) => {
+    await User.find()
         .then((user) => {
             res.json(user);
         })
@@ -52,12 +52,12 @@ module.exports.updateUser = async (req, res) => {
 module.exports.deleteUser = (req, res) => {
     let userID = req.params.userID;
     User.findByIdAndDelete({ _id: userID })
-        .then((user) => {
-            res.json(user);
-        })
-        .catch((err) => {
-            res.status(400).send(err);
-        })
+    .then((user) => {
+        res.json(user);
+    })
+    .catch((err) => {
+        res.status(400).send(err);
+    })
 }
 
 

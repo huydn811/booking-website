@@ -3,24 +3,26 @@ var Message = require("../model/message");
 module.exports.getAllMessage = async (req, res) => { //noi bang n-1
     let message = await Message.find()
     .populate({ path: "messages", populate: { path: 'userID' }})
-    // .populate({ path: "chatroomID"})
     .exec();
     res.json(message);
 }
 
-module.exports.CreateMessage = async (req,res) => {
+// get all chat room ( idChatRoom (1)) - >  (1) -> get Chat room by id -> messages[ {idUser: '', content: ''}]
+module.exports.addMessagge = async (req,res) => {
     let message = new Message(req.body);
-    let { userID, content, sendAt} = req.body;
-    let chatroomIDSendMsg  = req.body.chatroomID;
-    let chatroomIDExists = await Message.findOne({chatroomID : chatroomIDSendMsg})
+    // userID - content - sendAt
+    let { userID, chatroomID, content} = req.body;
+    let chatroomIDExists = await Message.findOne({chatroomID})
     if(chatroomIDExists) {
-        await Message.findOneAndUpdate({chatroomID : chatroomIDSendMsg}, {
+        await Message.findOneAndUpdate({chatroomID}, {
             $push : {
                 messages : {
                     userID,
                     content,
-                    sendAt
-                }
+                },
+            },
+            $set : {
+                chatroomID    
             }
         })
         res.status(200).json({
@@ -28,7 +30,15 @@ module.exports.CreateMessage = async (req,res) => {
             message : "push successfully"
         })
     }else {
-        await message.save()
+        await Message.create({
+            chatroomID,
+            messages : [
+                {
+                    userID ,
+                    content,
+                }
+            ]
+        });
             res.status(200).json({
                 data : message,
                 message : "save successfully"

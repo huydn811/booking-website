@@ -9,7 +9,7 @@ var userSchema =  new mongoose.Schema({
         type : String,
         trim : true,
     },
-    avatarUser : {
+    avatar : {
         type : String
     },
     role : {
