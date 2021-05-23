@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 
 var messageSchema = new mongoose.Schema({
+    chatroomID : {
+        type : String,
+    },
     messages : [{
         userID : {
             type : mongoose.Schema.Types.ObjectId,
@@ -14,6 +17,7 @@ var messageSchema = new mongoose.Schema({
             default : Date.now()
         }
     }],
+    
 });
 
 var Message = mongoose.model("Message", messageSchema,"messages");

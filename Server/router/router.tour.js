@@ -2,9 +2,7 @@ const express = require("express");
 const router = express.Router();
 const tourController = require("../controller/tour.controller");
 const multer = require("multer");
-const upload =  multer({dest : "uploads/tours",fileFilter : (req,file,cb)=>{
-    console.log("aaaaaaaaaaaaa", '["aaaaaaaaaaaaa"]');
-}});
+const upload =  multer({dest : "./uploads/tours"});
 
 //get all tour
 router.get("/get-all-tour", tourController.getAllTour);
