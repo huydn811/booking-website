@@ -27,21 +27,20 @@ module.exports.login = async (req, res)=> {
         accessToken
     })
 }
-
-module.exports.register = (req, res) => {
-    let user = new User({
-        userName : req.body.userName,
-        password : req.body.password,
-        avatarUser : req.body.avatarUser,
-        role : req.body.role,
-        email : req.body.email,
-        numberPhoneUser : req.body.numberPhoneUser
-    });
-    user.save()
-    .then((user)=> {
-        res.json(user);
-    })
-    .catch((err)=>{
-        res.json(err)
-    })
+ 
+module.exports.register = async(req, res) => {
+    try {
+        let user = new User(req.body);
+        req.body.avatar = req.file.filename;
+        await User.create(req.body);
+        res.status(200).json({
+            data : user,
+            message : "register successfully"
+        })
+    } catch (error) {
+        res.status(400).json({
+            error,
+            message : "register fail"
+        })
+    }
 }

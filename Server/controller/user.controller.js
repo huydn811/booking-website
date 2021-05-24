@@ -11,17 +11,20 @@ module.exports.getAllUser = async (req, res) => {
 };
 
 module.exports.addUser = async (req, res) => {
-    let user = new User(req.body);
-  
-    user.avatarUser = 'demo.jpeg';
-    user.save()
-        .then((user) => {
-            res.json(user);
-            console.log(user, '[user]');
+    try {
+        let user = new User(req.body);
+        req.body.avatar = req.file.filename;
+        await User.create(req.body);
+        res.status(200).json({
+            data : user,
+            message : "add user successfully"
         })
-        .catch((err) => {
-            console.log(err, '[err]');
+    } catch (error) {
+        res.status(400).json({
+            error,
+            message : "add user fail"
         })
+    }
 };
 
 module.exports.getUserID = (req, res) => {
@@ -36,17 +39,16 @@ module.exports.getUserID = (req, res) => {
 };
 
 module.exports.updateUser = async (req, res) => {
-    let userID = req.params.userID;
-    let updateUser = new User(req.body);
-    user.avatarUser = 'demo.jpeg';
-    updateUser.avatarUser = saveImg.fileName;
-    User.findByIdAndUpdate({ _id: userID }, { $set: updateUser })
-        .then((user) => {
-            res.json(user);
-        })
-        .catch((err) => {
-            res.status(400).send(err);
-        })
+    let userID  = req.params.userID;
+    let updateUser = req.body;
+    req.body.avatar = req.file.filename;
+    User.findByIdAndUpdate({_id : userID}, {$set : updateUser})
+    .then((user) => {
+        res.json(user);
+    })
+    .catch((err) => {
+        res.status(400).send(err);
+    })
 };
 
 module.exports.deleteUser = (req, res) => {

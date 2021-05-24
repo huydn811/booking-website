@@ -23,18 +23,20 @@ module.exports.getAllTour = (req, res) => {
 };
 
 module.exports.addTour = async (req, res) => {
-    let tour = new Tour(req.body);
-
-    tour.avatarTour = 'demo.jpeg';
-
-    tour.save()
-        .then((tour) => {
-            res.json(tour);
+    try {
+        let tour = new Tour(req.body);
+        req.body.avatar = req.file.filename;
+        await Tour.create(req.body);
+        res.status(200).json({
+            data : tour,
+            message : "add tour successfully"
         })
-        .catch((err) => {
-            console.log(err, '[err]');
-            res.status(400).send(err);
+    } catch (error) {
+        res.status(400).json({
+            error,
+            message : "add tour fail"
         })
+    }
 };
 
 module.exports.getTourID = (req, res) => {
@@ -48,19 +50,18 @@ module.exports.getTourID = (req, res) => {
         })
 }
 
-module.exports.updateTour = async (req, res) => {
+module.exports.updateTour = (req, res) => {
     let tourID = req.params.tourID;
-    let updateTour = req.body
-
-    updateTour.avatarTour = 'demo.jpeg';
-
+    let updateTour = req.body;
+    console.log(updateTour, '[updateTour]');
+    req.body.avatar = req.file.filename;
     Tour.findByIdAndUpdate({ _id: tourID }, { $set: updateTour })
-        .then((tour) => {
-            res.json(tour);
-        })
-        .catch((err) => {
-            res.status(400).send(err);
-        })
+    .then((tour) => {
+        res.json(tour);
+    })
+    .catch((err) => {
+        res.status(400).send(err);
+    })
 };
 
 module.exports.deleteTour = (req, res) => {

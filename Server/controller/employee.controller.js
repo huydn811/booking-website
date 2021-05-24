@@ -10,26 +10,21 @@ module.exports.getAllEmployee = (req,res) => {
     })
 };
 
-module.exports.addEmployee = (req, res) => {
-    let employee = new Employee ({
-        employeeID : req.body.employeeID,
-        nameEmployee : req.body.nameEmployee,
-        emailEmployee : req.body.emailEmployee,
-        roleEmployee : req.body.role,
-        avatarEmployee : req.body.avatarEmployee,
-        dayOfBirthEmployee : req.body.dayOfBirthEmployee,
-        genderEmployee : req.body.genderEmployee,
-        addressEmployee : req.body.addressEmployee,
-        numberPhoneEmployee : req.body.numberPhoneEmployee,
-    });
-    employee.save()
-    .then((employee) => {
-        res.json(employee);
-    })
-    .catch((err) => {
-        console.log(err, '[err]');
-        res.status(400).send(err);
-    })
+module.exports.addEmployee = async(req, res) => {
+    try {
+        let employee = new Employee(req.body);
+        req.body.avatar = req.file.filename;
+        await Employee.create(req.body);
+        res.status(200).json({
+            data : employee,
+            message : "add employee successfully"
+        })
+    } catch (error) {
+        res.status(400).json({
+            error,
+            message : "add employee fail"
+        })
+    }
 };
 
 module.exports.getEmployeeID = (req, res) => {
@@ -45,17 +40,8 @@ module.exports.getEmployeeID = (req, res) => {
 
 module.exports.updateEmployee = (req, res) => {
     let employeeID  = req.params.employeeID;
-    let updateEmployee = {
-        employeeID : req.body.employeeID,
-        nameEmployee : req.body.nameEmployee,
-        emailEmployee : req.body.emailEmployee,
-        roleEmployee : req.body.role,
-        avatarEmployee : req.body.avatarEmployee,
-        dayOfBirthEmployee : req.body.dayOfBirthEmployee,
-        genderEmployee : req.body.genderEmployee,
-        addressEmployee : req.body.addressEmployee,
-        numberPhoneEmployee : req.body.numberPhoneEmployee,
-    };
+    let updateEmployee = req.body;
+    req.body.avatar = req.file.filename;
     Employee.findByIdAndUpdate({_id : employeeID}, {$set : updateEmployee})
     .then((employee) => {
         res.json(employee);

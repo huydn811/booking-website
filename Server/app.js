@@ -44,7 +44,7 @@ mongoose.connect(process.env.MONGO_URL,{
         })
     );
 
-    app.use(express.static("public"));
+    app.use(express.static("public/uploads/"));
     app.use(morgan("dev"));
     app.use(session({
         resave: true, 
