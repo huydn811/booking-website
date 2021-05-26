@@ -10,13 +10,13 @@ import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.scss';
-import { history } from '../../../store'
 import { actFetchToursReq } from '../../../actions/actTour';
+import AppNotFound from '../../../components/AppNotFound';
 import { TOUR_IMG } from '../../../constants/Service';
-
-import AppNotFound from '../../../components/AppNotFound'
-
+import { history } from '../../../store';
 import './homepage.scss';
+
+
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 

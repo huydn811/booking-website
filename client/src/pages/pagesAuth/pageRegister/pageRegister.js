@@ -37,7 +37,7 @@ class PageRegister extends Component {
     const userRegister = {
       userName: txt_userName,
       password: txt_password,
-      avatarUser: `${this.fileInput.current.files[0].name}`,
+      // avatarUser: `${this.fileInput.current.files[0].name}`,
       email: txt_email,
       numberPhoneUser: txt_numberPhone,
     };

@@ -2,14 +2,12 @@ import React, { useEffect, useState, useContext, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SocketContext } from '../../../context/socket';
 
-import { actCreateChatRoomReq } from '../../../actions/actChat';
+import { actCreateChatRoomReq, actionGetAllMessageReq } from '../../../actions/actChat';
 import { actionGetCurrentUser } from '../../../actions/actCurrentUser';
 
 import { USER_IMG } from '../../../constants/Service';
 import './chat-client.scss';
 import { Button } from 'react-bootstrap';
-
-
 
 const ChatClient = () => {
   const dispatch = useDispatch();
@@ -24,12 +22,16 @@ const ChatClient = () => {
 
   const socket = useContext(SocketContext);
 
-  const { login: { isLogin, dataUserLogin } } = useSelector(currentState => currentState);
-  const { user: { _id } } = dataUserLogin;
+  const { login: { isLogin, dataUserLogin = {} } } = useSelector(currentState => currentState);
+  const currentUserId = dataUserLogin.user._id
 
-  const { currentUserState: { currentUser: { chatRoomID } } } = useSelector(currentState => currentState);
   useEffect(() => {
-    dispatch(actionGetCurrentUser(_id));
+    dispatch(actionGetAllMessageReq())
+  }, [dispatch]);
+
+  const { currentUserState: { currentUser: { chatRoomID } }, chatRoom: { messages } } = useSelector(currentState => currentState);
+  useEffect(() => {
+    dispatch(actionGetCurrentUser(currentUserId));
 
     //   // client take data from server
     //   socket.on('newMessage-server-sent', (data) => {
@@ -38,7 +40,7 @@ const ChatClient = () => {
     //   // client send data to server
     //   // socket.emit("newMessage-client-sent","hello")
     //   dispatch(actFetchAllChatRoom());
-  }, [dispatch, _id])
+  }, [dispatch, currentUserId])
 
 
   const handleInputOnChange = (e) => {
@@ -47,11 +49,11 @@ const ChatClient = () => {
 
   const handleConnect = () => {
     dispatch(actCreateChatRoomReq({
-      userID: _id,
+      userID: currentUserId,
       roomMaster: 'admin',
       content: 'hello'
     })).then(() => {
-      dispatch(actionGetCurrentUser(_id));
+      dispatch(actionGetCurrentUser(currentUserId));
     })
 
   }
@@ -74,7 +76,7 @@ const ChatClient = () => {
     // }
   }
 
-  console.log({ chatRoomID })
+  console.log({ messages })
   if (isLogin) {
     return (
       <>
@@ -93,25 +95,46 @@ const ChatClient = () => {
                 <>
                   {/* chat body */}
                   <div id="chat_box_body" className="chat-box-body">
-                    <div id="chat_messages" className={dataUserLogin ? 'my-message' : 'other-message'}>
-                      <div className="profile other-profile">
-                        <img src="https://i.pravatar.cc/30" width="30" height="30" alt="" />
-                        <span>Admin</span>
-                      </div>
-                      <div className="message other-message" >I'm admin . can i support for you</div>
-                      <div className="profile my-profile">
-                        <span>{dataUserLogin ? dataUserLogin.user.userName : ''}</span>
-                        <img
-                          src={`${USER_IMG}/${dataUserLogin ? dataUserLogin.user.avatarUser : ''}`}
-                          width="30"
-                          height="30"
-                          alt=""
-                        />
-                      </div>
-                      <div className="message my-message">
-                        I'm user
-                      </div>
-                    </div>              </div>
+                    {
+                     messages && Object.keys(messages) && messages?.messages.map((mess) => {
+                        const { content, userID } = mess
+                        console.log(userID._id)
+                        return (
+                          <>
+                            {
+                              currentUserId === userID._id ? (
+                                <div className="client-mess profile my-profile">
+                                  <div className="">
+                                    {/* <span>{dataUserLogin ? dataUserLogin.user.userName : ''}</span> */}
+                                    <span>{userID.userName}</span>
+                                    <img
+                                      src={`${USER_IMG}/${dataUserLogin ? dataUserLogin.user.avatarUser : ''}`}
+                                      width="30"
+                                      height="30"
+                                      alt=""
+                                    />
+                                  </div>
+                                  <div className="message my-message"> {content} </div>
+                                </div>
+                              ) : (
+                                <div className="admin-mess">
+                                  <div className="profile other-profile">
+                                    <img src="https://i.pravatar.cc/30" width="30" height="30" alt="" />
+                                    <span>Admin</span>
+                                  </div>
+                                  <div className="message other-message" >{content}</div>
+                                </div>
+                              )
+                            }
+
+
+                          </>
+                        )
+                      })
+                    }
+
+
+                  </div>
 
                   <div id="typing">
                     <div>

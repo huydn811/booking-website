@@ -51,3 +51,17 @@ export const actCreateChatRoomReq = (payload) => (dispatch) => callApi('chat/cre
   .catch(() => {
     // console.log(err, '[err]');
   });
+
+  export const actionGetAllMessage = (payload) => ({
+    type: TypesChat.GET_ALL,
+    payload,
+  });
+
+  export const actionGetAllMessageReq = () => (dispatch) => callApi('chat/get-all-message', 'GET')
+    .then((res) => {
+      dispatch(actionGetAllMessage(res.data));
+    })
+    .catch(() => {
+      // console.log(err, '[err]');
+    });
+
