@@ -17,7 +17,7 @@ var employeeSchema = new mongoose.Schema({
         type : String,
         trim : true
     },
-    avatarEmployee : {
+    avatar : {
         type : String,
         trim :true
     },
