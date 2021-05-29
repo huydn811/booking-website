@@ -8,6 +8,6 @@ router.get("/get-chatroom/:id", chatController.getChatRoomByID);
 router.post("/create-chatroom", chatController.createChatRoom);
 
 router.get("/get-all-message", MessageController.getAllMessage);
-router.post("/create-message", MessageController.CreateMessage);
+router.post("/add-message", MessageController.addMessagge);
 
 module.exports = router;

@@ -7,7 +7,7 @@ var tourSchema = new mongoose.Schema({
     tourName : {
         type : String,
     },
-    avatarTour : {
+    avatar : {
         type : String,
     },
     startAddress : {

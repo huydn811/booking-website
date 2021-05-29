@@ -9,11 +9,12 @@ var userSchema =  new mongoose.Schema({
         type : String,
         trim : true,
     },
-    avatarUser : {
+    avatar : {
         type : String
     },
     role : {
         type : String,
+        default : "member"
     },
     email : {
         type : String,

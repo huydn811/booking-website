@@ -3,6 +3,8 @@ import { Form, Button, Container, Table, Spinner, Modal } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 
 import { actFetchToursReq, actDeleteTourReq, getTourById, updateTour } from '../../../../actions/actTour';
+
+
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -61,7 +63,6 @@ const PageAllTour = props => {
               <Spinner animation="border" variant="primary" />
             ) : (
               <Container>
-
                 <Formik
                   initialValues={singleTour}
                   validationSchema={

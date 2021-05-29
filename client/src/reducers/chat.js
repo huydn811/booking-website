@@ -1,7 +1,8 @@
 import * as TypeChat from '../constants/ActionChat';
 
 const initialState = {
-  chatRooms: []
+  chatRooms: [],
+  messages: {}
 }
 
 const chatRoom = (state = initialState, action) => {
@@ -12,6 +13,12 @@ const chatRoom = (state = initialState, action) => {
       }
     case TypeChat.ADD_MESSAGES:
       return state
+
+    case TypeChat.GET_ALL:
+      return {
+        ...state,
+        messages: action.payload.message
+      }
     default:
       return state
   }

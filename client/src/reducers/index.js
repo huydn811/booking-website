@@ -8,6 +8,7 @@ import cart from './cart';
 import chatRoom from './chat';
 import customer from './customer';
 import detailTourReducer from './detailTour';
+import currentUser from './currentUser';
 
 const appReducers = combineReducers({
   tour,
@@ -18,7 +19,8 @@ const appReducers = combineReducers({
   cart,
   chatRoom,
   customer,
-  tourState: detailTourReducer
+  tourState: detailTourReducer,
+  currentUserState: currentUser
 });
 
 export default appReducers;
