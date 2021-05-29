@@ -5,10 +5,10 @@ import employee from './employee';
 import user from './user';
 import login from './login';
 import cart from './cart';
-import search from './search';
 import chatRoom from './chat';
 import customer from './customer';
 import detailTourReducer from './detailTour';
+import currentUser from './currentUser';
 
 const appReducers = combineReducers({
   tour,
@@ -17,10 +17,10 @@ const appReducers = combineReducers({
   user,
   login,
   cart,
-  search,
   chatRoom,
   customer,
-  tourState: detailTourReducer
+  tourState: detailTourReducer,
+  currentUserState: currentUser
 });
 
 export default appReducers;

@@ -1,9 +1,9 @@
 import * as TypesChat from '../constants/ActionChat';
 import callApi from '../utils/ApiCaller';
 
-export const actFetchAllChatRoom = (chatRooms) => ({
+export const actFetchAllChatRoom = (payload) => ({
   type: TypesChat.FETCH_ALL_CHATROOM,
-  chatRooms,
+  payload,
 });
 
 export const actFetchAllChatRoomReq = () => (dispatch) => callApi('chat/get-all-chatroom', 'GET', null)
@@ -37,3 +37,31 @@ export const actAddMessageReq = (message) => (dispatch) => callApi('chat/create-
   .catch(() => {
     // console.log(err, '[err]');
   });
+
+export const actCreateChatRoom = (payload) => ({
+  type: TypesChat.CREATE_CHAT_ROOM,
+  payload,
+});
+
+export const actCreateChatRoomReq = (payload) => (dispatch) => callApi('chat/create-chatroom', 'POST', payload)
+  .then((res) => {
+    console.log(res.data)
+    dispatch(actCreateChatRoom(res.data));
+  })
+  .catch(() => {
+    // console.log(err, '[err]');
+  });
+
+  export const actionGetAllMessage = (payload) => ({
+    type: TypesChat.GET_ALL,
+    payload,
+  });
+
+  export const actionGetAllMessageReq = () => (dispatch) => callApi('chat/get-all-message', 'GET')
+    .then((res) => {
+      dispatch(actionGetAllMessage(res.data));
+    })
+    .catch(() => {
+      // console.log(err, '[err]');
+    });
+

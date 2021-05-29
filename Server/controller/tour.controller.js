@@ -12,7 +12,6 @@ module.exports.getAllTour = (req, res) => {
         conditionFind.tourName = fuzzySearch(q)
     }
 
-    console.log(conditionFind)
     Tour.find(conditionFind)
         .then((tour) => {
             res.json(tour);

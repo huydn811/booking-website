@@ -1,7 +1,14 @@
 import * as TypesSearch from '../constants/ActionTypeTour';
+import callApi from '../utils/ApiCaller';
 
 // eslint-disable-next-line import/prefer-default-export
-export const actSearchTour = (keyword) => ({
+export const actSearchTour = (payload) => ({
   type: TypesSearch.SEARCH_TOUR,
-  keyword,
+  payload,
 });
+
+export const actionSearchOnTour = (q) => (dispatch) => callApi(`tour/get-all-tour?q=${q}`, 'GET')
+  .then((res) => {
+    console.log(res.data)
+    dispatch(actSearchTour(res.data));
+  });

@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Table, Button } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import { Container } from 'react-bootstrap';
 import './Cart.scss';
-import Popup from '../../Popup/Popup';
 // import { actGetCartReq } from "../../../actions/actCart";
 class Cart extends Component {
   constructor(props) {

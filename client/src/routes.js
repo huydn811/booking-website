@@ -161,7 +161,7 @@ export const routesAdmin = [
   //   main: ({ match, history }) => <ChatPage match={match} history={history} />,
   // },
   {
-    path: '/admin/chat/:chatRoomID',
+    path: '/admin/chat',
     exact: false,
     main: ({ match, history }) => <ChatPage match={match} history={history} />,
   },

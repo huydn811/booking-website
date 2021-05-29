@@ -1,60 +1,50 @@
-import React, { Component } from 'react';
-
-import SwiperCore, {
-  Navigation, Pagination, Scrollbar, A11y, Autoplay,
-} from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import SwiperCore, { A11y, Autoplay, Navigation, Pagination, Scrollbar } from 'swiper';
+import 'swiper/components/effect-cube/effect-cube.min.css';
 import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
-import 'swiper/components/effect-cube/effect-cube.min.css';
-
-import { Container, Row, Col } from 'react-bootstrap';
-import { NavLink, withRouter } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper.scss';
 import { actFetchToursReq } from '../../../actions/actTour';
-import './homepage.scss';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import AppNotFound from '../../../components/AppNotFound';
 import { TOUR_IMG } from '../../../constants/Service';
-import { connect } from 'react-redux';
+import { history } from '../../../store';
+import './homepage.scss';
+
+
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
-class HomePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpenSlide: false,
-    };
-  }
 
-  componentDidMount() {
-    this.props.onFectAllTour();
-  }
 
-  componentDidUpdate() {
-    if (this.state.isOpenSlide === false) {
-      this.setState({
-        isOpenSlide: !this.state.isOpenSlide,
-      });
-    }
-  }
+const HomePage = () => {
 
-  showSlide = (tourDestination) => (
+  const dispatch = useDispatch();
+  const [state, setState] = useState({ isOpenSlide: false, })
+
+  const { login: { isLogin }, tour: { listTour } } = useSelector(cS => cS)
+
+  useEffect(() => {
+    dispatch(actFetchToursReq())
+  }, [dispatch]);
+
+  const renderSlide = () => (
     <Swiper
       lazy
       spaceBetween={50}
       slidesPerView={3}
-      // onSlideChange={() => console.log('slide change')}
-      // onSwiper={(swiper) => console.log(swiper)}
-      // EffectCube = {true}
       autoplay={{ delay: 3000 }}
       loop
     >
-      {this.showTopDestination(tourDestination)}
+      {showTopDestination(listTour)}
     </Swiper>
   )
 
-  showTopDestination = (tourDestination) => {
+  const showTopDestination = (tourDestination) => {
     let result = null;
     const items = [...tourDestination];
     const newItems = [];
@@ -78,18 +68,6 @@ class HomePage extends Component {
                   <div className="title-item">
                     <p>{item.tourName}</p>
                   </div>
-                  {/* <Row>
-                                        <Col lg={8}>
-                                            <div className="title-item">
-                                                <p>Cau Rong Da Nang</p>
-                                            </div>
-                                        </Col> */}
-                  {/* <Col lg={4}>
-                                            <div className="title-item qty-tour">
-                                                <p>38 Tours</p>
-                                            </div>
-                                        </Col> */}
-                  {/* </Row> */}
                 </div>
               </div>
             </SwiperSlide>
@@ -101,10 +79,10 @@ class HomePage extends Component {
     return result;
   }
 
-  showAllTours = (tours) => {
+  const renderAllTour = () => {
     let result = null;
-    if (tours.length > 0) {
-      result = tours.map((tour, index) => {
+    if (listTour.length) {
+      result = listTour.map((tour, index) => {
         if (tour !== undefined) {
           return (
             // eslint-disable-next-line react/no-array-index-key
@@ -125,15 +103,6 @@ class HomePage extends Component {
                     <Col lg={7}>
                       <div className="qty-people">
                         <span>{`Remain : ${tour.qtyPeople}`}</span>
-                        {/* <NavLink className="navLink-time-tour"  to={`/detail-tour/${tour._id}`}>
-                                                <fieldset>EXPLORE</fieldset>
-                                            </NavLink>
-                                                <div className="icon-time">
-                                                    {/* <img src="../../../img/icon-time.svg"/> */}
-                        {/* <i className="fas fa-arrow-right"></i>
-                                                </div>    */}
-                        {/* <fieldset>5 Days / 4 Nights</fieldset> */}
-                        {/* <fieldset>Sale</fieldset> */}
                       </div>
                     </Col>
                     <Col lg={5}>
@@ -151,120 +120,87 @@ class HomePage extends Component {
           );
         }
       });
+    } else {
+      result = <AppNotFound />
     }
     return result;
   }
 
-  render() {
-    const { tours, search } = this.props;
-    // // var isLogin = JSON.parse(localStorage.getItem("login"));
-    // // var isLogin = this.props.login; //get data from redux
-    // if(search){
-    //     tours = tours.filter((tour)=> {
-    //         return tour.tourName.toLowerCase().indexOf(search) !== -1;
-    //     });
-    // }
-    // if(isLogin.isLogin === true){
-    return (
-      <div>
-        {/* <Header/> */}
-        <div className="homePage">
-          <Container>
-            <div className="top-destination">
-              <legend>Top Destination</legend>
-              <div className="list-destination">
-                {this.showSlide(tours)}
-              </div>
-            </div>
-            <div className="our-tour">
-              <div className="title-our-tour">
-                <legend>Our Tours</legend>
-              </div>
-              <div className="list-our-tour">
-                <Row>
-                  {this.showAllTours(tours)}
-                </Row>
-              </div>
-            </div>
-            {/* <div className="travel-tip">
-                                <div className="title-travel-trip">
-                                    <legend>Travel Tips</legend>
-                                </div>
-                                <div className="img-travel-tip">
-                                    <img src="../../../img/img-travel-tip.svg" />
-                                </div>
-                            </div> */}
-            <div className="travel-tip">
-              <div className="title-travel-trip">
-                <legend>Travel Tips</legend>
-              </div>
-              <div className="slide-travel-tip">
-                <Swiper
-                  autoplay={{ delay: 3000 }}
-                  loop
-                  // spaceBetween={50}
-                  // slidesPerView={3}
-                  // navigation
-                  // pagination={{ clickable: true }}
-                  scrollbar={{ draggable: true }}
-                >
-                  <SwiperSlide>
-                    <div className="img-slide-travel-tip">
-                      <img src="../../../../img/travel-tip-1.svg" />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="img-slide-travel-tip">
-                      <img src="../../../../img/img-travel-tip.svg" />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="img-slide-travel-tip">
-                      <img src="../../../../img/travel-tip-2.svg" />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="img-slide-travel-tip">
-                      <img src="../../../../img/travel-tip3.svg" />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="img-slide-travel-tip">
-                      <img src="../../../../img/travel-tip-4.svg" />
-                    </div>
-                  </SwiperSlide>
-                  <SwiperSlide>
-                    <div className="img-slide-travel-tip">
-                      <img src="../../../../img/travel-tip-5.svg" />
-                    </div>
-                  </SwiperSlide>
 
-                </Swiper>
-              </div>
+  if (!isLogin) return history.push('/login')
+  return (
+    <div>
+      {/* <Header/> */}
+      <div className="homePage">
+        <Container>
+
+          <div className="our-tour">
+            <div className="title-our-tour">
+              <legend>Our Tours</legend>
             </div>
-          </Container>
-        </div>
-        {/* <Footer/> */}
+            <div className="list-our-tour">
+              <Row>
+                {renderAllTour()}
+              </Row>
+            </div>
+          </div>
+
+          <div className="top-destination">
+            <legend>Top Destination</legend>
+            <div className="list-destination">
+              {renderSlide()}
+            </div>
+          </div>
+
+          <div className="travel-tip">
+            <div className="title-travel-trip">
+              <legend>Travel Tips</legend>
+            </div>
+            <div className="slide-travel-tip">
+              <Swiper
+                autoplay={{ delay: 3000 }}
+                loop
+                scrollbar={{ draggable: true }}
+              >
+                <SwiperSlide>
+                  <div className="img-slide-travel-tip">
+                    <img src="../../../../img/travel-tip-1.svg" alt="" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="img-slide-travel-tip">
+                    <img src="../../../../img/img-travel-tip.svg" alt="" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="img-slide-travel-tip">
+                    <img src="../../../../img/travel-tip-2.svg" alt="" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="img-slide-travel-tip">
+                    <img src="../../../../img/travel-tip3.svg" alt="" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="img-slide-travel-tip">
+                    <img src="../../../../img/travel-tip-4.svg" alt="" />
+                  </div>
+                </SwiperSlide>
+                <SwiperSlide>
+                  <div className="img-slide-travel-tip">
+                    <img src="../../../../img/travel-tip-5.svg" alt="" />
+                  </div>
+                </SwiperSlide>
+
+              </Swiper>
+            </div>
+          </div>
+        </Container>
       </div>
-    );
-    // }
-    // else {
-    //     history.push("/login");
-    //     return null;
-    // }
-  }
+      {/* <Footer/> */}
+    </div>
+  );
 }
-// mapStateToProps co 2 tham so tham so thu1 la currentState tham so thu 2 neeu dc truyen vao thi la object cua props da dc truyen cho component
-const mapStateToProps = (state) => // get
-  ({
-    login: state.login,
-    tours: state.tour,
-    search: state.search,
-  });
 
-const mapDisPatchToProps = (dispatch, props) => ({
-  onFectAllTour: () => {
-    dispatch(actFetchToursReq());
-  },
-});
-export default withRouter(connect(mapStateToProps, mapDisPatchToProps)(HomePage));
+export default HomePage

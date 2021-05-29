@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types'
-
 const index = props => {
   return (
     <div className="detail-tour">
@@ -7,7 +5,7 @@ const index = props => {
         <legend>Tour is not found</legend>
       </div>
       <div className="img-detail-tour">
-        <img src="../../../public/img/detail-tour.svg"  alt=""/>
+        <img src="../../assets/img/default-avt.png"  alt=""/>
       </div>
       <div className="description-detail-tour">
         <div className="description-detail">
