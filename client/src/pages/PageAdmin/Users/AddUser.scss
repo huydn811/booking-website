@@ -1,0 +1,30 @@
+.pageadduser {
+    width: 100%;
+    height: auto;
+    .form {
+        width: 100%;
+        height: auto;
+        legend {
+            padding-top: 100px;
+            padding-left: 200px;
+            display: flex;
+        }
+        .form_ {
+            padding: 0 200px 30px 200px;
+            input {
+                display: flex;
+            }
+            .img_ {
+                width: 90px;
+                height: 50px;
+                padding-top: 10px;
+                img {
+                    width: 100%;
+                }
+            }
+            .text-muted {
+                color: red !important;
+            }
+        }
+    }
+}

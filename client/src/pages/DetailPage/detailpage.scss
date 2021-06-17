@@ -1,0 +1,71 @@
+@import '../../assets/scss/variable';
+.detail-page{
+    width: 100%;
+    height: auto;
+    padding: 20px 0 50px 0;
+    .detail-tour{
+        width: 100%;
+        height: auto;
+        .title-detail-tour{
+            width: 100%;
+            height: auto;
+            legend{
+                font-family: $font_family;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 40px;
+                line-height: 48px;
+                color: #000000;
+                text-shadow: 5px -5px 0 #d5d5d5, 0px 0px 0px rgba(0, 0, 0, 0.2);
+            }
+        }
+        .img-detail-tour{
+            width: 100%;
+            height: auto;
+            img{
+                width: 100%;
+            }
+        }
+        .description-detail-tour{
+            width: 100%;
+            height: auto;
+            .description-detail{
+                width: 100%;
+                height: auto;
+                .title-description-detail{
+                    width: 100%;
+                    height: auto;
+                    legend{
+                        font-family: $font_family;
+                        font-style: normal;
+                        font-weight: bold;
+                        font-size: 30px;
+                        line-height: 48px;
+                        color: #000000;
+                    }
+                }
+                .description-detail-zone{
+                    width: 100%;
+                    height: auto;
+                    fieldset{
+                        font-family: $font_family;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 20px;
+                        line-height: 48px;
+                        color: #000000;
+                        text-align: justify;
+                    }
+                }
+            }
+        }
+    }
+    .btn-order-tour{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        Button{
+        }
+    }
+}

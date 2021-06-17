@@ -1,0 +1,23 @@
+.alltourpage{
+    width: 100%;
+    height: auto;
+    .table-all-tour{
+        position: absolute;
+        top: 100px;
+        right:200px ;
+        legend {
+            display: flex !important;
+        }
+        Table{
+            tbody{
+                .td-action{
+                    display: flex;
+                    align-items: center;
+                    button{
+                        width: 60px;
+                    }
+                }
+            }
+        }
+    }
+}

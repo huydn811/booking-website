@@ -1,0 +1,46 @@
+@import '../../assets/scss/variable';
+.not-found{
+    width: 100%;
+    height: auto;
+    padding: 250px 0 0 0;
+    legend{
+        text-align: center;
+        font-family: $font_family;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 220px;
+        line-height: 48px;
+        color: #000000;
+        span{
+            color: #2EFEF7;
+        }
+    }
+    fieldset{
+        padding-top: 70px;
+        text-align: center;
+        font-family: $font_family;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 100px;
+        line-height: 48px;
+        color: #000000;
+    }
+    .navLink-404{
+        text-decoration: none;
+        span{
+            padding-top: 50px;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            font-family: $font_family;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 50px;
+            line-height: 48px;
+            color: #000000;
+            &:hover {
+                color: #999999;
+            }
+        }
+    }
+}

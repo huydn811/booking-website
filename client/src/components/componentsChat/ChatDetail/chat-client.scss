@@ -24,6 +24,8 @@ body {
   font-size: $font-size;
 }
 
+
+
 .flexbox {
   display: flex;
   justify-content: flex-end;
@@ -53,7 +55,9 @@ body {
     box-sizing: border-box;
   }
   > .chat-box-body {
-    height: 100%;
+    overflow: scroll;
+    max-height: 120px;
+
     display: flex;
     overflow: auto;
     display: flex;
@@ -81,9 +85,10 @@ body {
         background-color: #006ae3;
         align-self: flex-end;
       }
-      .other-message {
-        background-color: #e2e2e2;
-      }
+      .other-message{
+          background: 'red';
+          border-radius: 4px;
+        }
       .profile {
         margin: 2px 0;
         overflow: hidden;
@@ -102,6 +107,8 @@ body {
       .my-profile {
         color: $font-color-muted;
         align-self: flex-end;
+        padding-top: 2px;
+        border-radius: 2px;
       }
       .other-profile {
         color: $font-color-muted;

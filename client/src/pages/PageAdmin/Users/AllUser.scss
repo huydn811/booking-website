@@ -1,0 +1,26 @@
+.pagealluser{
+    width: 100%;
+    height: auto;
+    .table-all-user{
+        padding:150px 0 0 150px ;
+        legend{
+            display: flex;
+        }
+        Table{
+            tbody{
+                .td-action{
+                    display: flex;
+                    align-items: center;
+                    Button{
+                        width: 60px;
+                        height: 30px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.mr-3 {
+    margin-right: 10px;
+}

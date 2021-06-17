@@ -1,0 +1,145 @@
+@import '../../assets/scss/variable';
+footer{
+    .footer{
+        width: 100%;
+        height: auto;
+        position: relative;
+        .bg-footer{
+            width: 100%;
+            height: auto;
+            .img-bg-footer{
+                width: 100%;
+                height: auto;
+                img{
+                    width: 100%;
+                }
+            }
+        }
+        .subscribeToOur{
+            width: 100%;
+            height: auto;
+            position: absolute;
+            top: 0px;
+            left: 0;
+            padding-top: 250px;
+            .bg-subscribeToOur{
+                width: 100%;
+                height: auto;
+                legend{
+                    font-family: $font_family;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 30px;
+                    line-height: 36px;
+                    text-align: center;
+                    color: #FFFFFF;
+                }   
+                .input-subscribe-footer{
+                    width: 100%;
+                    height: auto;
+                    display: flex;
+                    justify-content: center;
+                    .input-subs{
+                        width: 600px;
+                    }
+                    .button-subs{
+                        width: 100px;
+                        height: 37px;
+                        padding-left: 10px;
+                        button{
+                            width: 100%;
+                            height: 100%;
+                            background-color: #FFC600;
+                            border-radius: 5px;
+                            border: none;
+                            &:focus{
+                                outline: none;
+                            }
+                            &:hover{
+                                color: #FFFFFF;
+                            }
+                            span{
+                                font-family: $font_family;
+                                font-style: normal;
+                                font-weight: normal;
+                                font-size: 20px;
+                                line-height: 24px;
+                                color: #FFFFFF;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .footer-bottom{
+            width: 100%;
+            height: auto;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            .footer-bottom-item-left{
+                width: 100%;
+                height: auto;
+                .logo-footer{
+                    width: 100%;
+                    height: auto;
+                    padding-bottom: 15px;
+                    .img-logo-footer{
+                        width: 202px;
+                        height: 51px;
+                        img{
+                            width: 100%;
+                        }
+                    }
+                }
+                .description-footer-item-left{
+                    width: 100%;
+                    height: auto;
+                    p{
+                        width: 70%;
+                        font-family: $font_family;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 15px;
+                        line-height: 27px;
+                        color: #999999;
+                    }
+                }
+            }
+            .footer-bottom-item-right{
+                .item-right{
+                    .list-menu{
+                        legend{
+                            font-family: $font_family;
+                            font-style: normal;
+                            font-weight: normal;
+                            font-size: 18px;
+                            line-height: 50px;
+                            letter-spacing: 2px;
+                            text-transform: uppercase;
+                            color: #FFFFFF;
+                        }
+                        ul{
+                            list-style: none;
+                            padding: 0;
+                            li{
+                                .navLink-footer{
+                                    text-decoration: none;
+                                    font-family: $font_family;
+                                    font-style: normal;
+                                    font-weight: normal;
+                                    font-size: 14px;
+                                    line-height: 24px;
+                                    color: #999999;
+                                    &:hover{
+                                        color: #FFFFFF;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

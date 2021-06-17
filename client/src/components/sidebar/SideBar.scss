@@ -1,0 +1,36 @@
+.sidebar{
+    width: 20%;
+    height: auto;
+    .main-sidebar{
+        .sidebar-wrapper{
+            .sidebar-brand{
+                a{}
+            }
+            .sidebar-menu{
+                .menu-header{}
+                .nav-item{}
+                a{}
+                .dropdown-menu{
+                    display: block;
+                    transition: all 0.3s ease-in-out;
+                    height: 0px;
+                    li{
+                        padding-bottom: 10px;
+                        a{
+                            opacity: 0;
+                        }
+                    }
+                }
+                .active {
+                    height: 70px;
+                    li {
+                        a {
+                            height: auto;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
